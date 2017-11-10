@@ -2,8 +2,8 @@
 
 全模块化的移动直播推流方案，支持任意编码codec和推流发送模块的接入。
 
-* [About](#1about)
-* [License](#2license)
+* [About](#1-about)
+* [License](#2-license)
 
 ## 1. about
 [UnionMobileStreaming][ums]是全模块化的移动直播推流方案，完成了移动平台音视频数据的采集、处理、编码和推流工作。
