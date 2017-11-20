@@ -53,15 +53,6 @@
 ## 3. getting started
 please read [wiki][wiki].
 
-* demo 目录包含SDK的使用示例，以及串联各个功能模块的kit类UnionStreamer.java.
-* prebuilt 目录包含SDK框架及基础功能的jar/so文件，是其他各个模块的基础。
-* libunionstreamer 目录在执行./build.sh后，
-会将prebuilt中的基础jar/so拷贝到自己的libs目录下，作为其他模块的依赖模块。
-* fdkaacencoder 目录包含了自定义fdk-aac编码库的代码示例。
-* x264encoder 目录包含了自定义x264编码库的代码示例。
-* librtmppub 包含了自定义RTMP推流模块的代码示例。
-* docs目录下为libunionstreamer基础库的javadoc文档。
-
 ## 4. feedback
 Please post your discussion on github [issues][issues].
  
