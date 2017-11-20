@@ -94,15 +94,6 @@ enum {
 uint8_t unionflv_get_audio_flags(UnionAudioEncCfg *audioEncCfg);
 
 /**
- @abstract 获取flv aac AudioSpecificConfig
- 
- @param audiofmt 音频格式
- 
- @return AudioSpecificConfig
- */
-uint16_t unionflv_get_aac_speccfg(UnionAudioEncCfg *audioEncCfg);
-
-/**
  @abstract 获取flv video tag的第一个字节
  
  @param audiofmt 视频格式

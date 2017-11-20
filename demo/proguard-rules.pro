@@ -26,7 +26,7 @@
 -dontoptimize
 -dontwarn
 
--keep class com.ksyun.** {
+-keep class org.opencdnunion.** {
   *;
 }
 

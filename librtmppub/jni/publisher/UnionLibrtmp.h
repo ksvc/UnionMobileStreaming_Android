@@ -70,23 +70,28 @@ void union_librtmp_close(UnionLibrtmp_t *librtmp);
 UnionPublisherStatus union_librtmp_get_status(UnionLibrtmp_t *librtmp);
     
 /**
- @abstract 获取当前流的视频信息
-     
- @param librtmp 推流对象
-     
- @return 返回推流器当前状态
-*/
-UnionVideoEncCfg* union_librtmp_get_videocfg(UnionLibrtmp_t *librtmp);
-    
+ @abstract 设置当前流的视频格式
+ 
+ @param publisher 推流对象
+ */
+void union_librtmp_set_videocfg(UnionLibrtmp_t *publisher, UnionVideoEncCfg *vEncCfg);
     
 /**
- @abstract 获取当前流的音频信息
-     
- @param librtmp 推流对象
-     
- @return 当前流的音频格式
+ @abstract 设置当前流的音频格式
+ 
+ @param publisher 推流对象
  */
-UnionAudioEncCfg* union_librtmp_get_audiocfg(UnionLibrtmp_t *librtmp);
+void union_librtmp_set_audiocfg(UnionLibrtmp_t *publisher, UnionAudioEncCfg *aEncCfg);
+    
+/**
+ @abstract 设置用户自定义的metadata
+ 
+ @param publisher 推流对象
+ @param char 关键字
+ @param number 数值
+ @param string 字符串
+ */
+void union_librtmp_set_userMetadata(UnionLibrtmp_t *librtmp, char *key, double number, char *string);
 
 #ifdef __cplusplus
 }

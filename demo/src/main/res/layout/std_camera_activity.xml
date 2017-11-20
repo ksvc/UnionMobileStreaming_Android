@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:visibility="gone"/>
 
-    <com.ksyun.media.streamer.demo.CameraHintView
+    <org.opencdnunion.media.streamer.demo.CameraHintView
         android:id="@+id/camera_hint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

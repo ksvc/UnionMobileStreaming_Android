@@ -30,6 +30,22 @@ typedef enum _UnionPublisherStatus{
     UnionPublisher_Status_Error     = 3,
 }UnionPublisherStatus;
     
+/**
+ * 发送端错误码
+ */
+typedef enum _UnionPublisherError{
+    /// 初始化状态
+    UnionPublisher_Error_Unknown                = -10000,
+    /// 无效的地址
+    UnionPublisher_Error_Invalid_Address        = -10001,
+    /// 链接服务器失败
+    UnionPublisher_Error_ConnectServer_Failed   = -10002,
+    /// 推流失败
+    UnionPublisher_Error_ConnectStream_Failed   = -10003,
+    /// 发送数据失败
+    UnionPublisher_Error_Send_Failed            = -10004,
+}UnionPublisherError;
+    
 
 /**
  * 数据类型

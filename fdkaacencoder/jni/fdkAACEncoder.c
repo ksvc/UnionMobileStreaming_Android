@@ -1,6 +1,6 @@
 #include "fdkAACEncoder.h"
 #include <fdk-aac/aacenc_lib.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 #include <stdbool.h>

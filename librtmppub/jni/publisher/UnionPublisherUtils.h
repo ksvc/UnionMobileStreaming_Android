@@ -23,15 +23,6 @@
              ((const uint8_t*)(x))[3])
 
 /**
- @abstract 获取采样率索引
- 
- @param sample 采样率
- 
- @return 采样率索引
- */
-uint8_t unionutils_get_samplerateindex(int samplerate);
-
-/**
  @abstract 查找nal start code
  
  @param p 起始地址

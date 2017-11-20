@@ -48,7 +48,7 @@ static void onEncoded(UnionAVPacket* out, void* opaque) {
                            out->dts, out->pts, out->flags);
 }
 
-jlong Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1init
+jlong Java_org_opencdnunion_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1init
         (JNIEnv *env, jobject obj) {
     FdkAACEncoder* thiz = fdkAACEncInit();
     if (thiz) {
@@ -65,7 +65,7 @@ jlong Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1init
     return (jlong)(intptr_t) thiz;
 }
 
-jint Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1open
+jint Java_org_opencdnunion_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1open
         (JNIEnv *env, jobject obj, jlong ptr, jint bitrate, jint sampleFmt, jint sampleRate,
          jint channels, jint profile) {
     FdkAACEncoder* thiz = getInstance(ptr);
@@ -80,7 +80,7 @@ jint Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1open
     return fdkAACEncOpen(thiz, &cfg);
 }
 
-jint Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1encode
+jint Java_org_opencdnunion_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1encode
         (JNIEnv *env, jobject obj, jlong ptr, jobject jbuffer, jint size, jlong pts, jint flags) {
     FdkAACEncoder* thiz = getInstance(ptr);
     uint8_t* data = NULL;
@@ -102,13 +102,13 @@ jint Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1encode
     return fdkAACEncEncode(thiz, pf);
 }
 
-void Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1close
+void Java_org_opencdnunion_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1close
         (JNIEnv *env, jobject obj, jlong ptr) {
     FdkAACEncoder* thiz = getInstance(ptr);
     fdkAACEncClose(thiz);
 }
 
-void Java_com_union_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1release
+void Java_org_opencdnunion_media_streamer_encoder_fdkaac_FdkAACEncoderWrapper__1release
         (JNIEnv *env, jobject obj, jlong ptr) {
     FdkAACEncoder* thiz = getInstance(ptr);
     fdkAACEncRelease(thiz);

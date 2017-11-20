@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="com.union.streamer.publisher.librtmp">
+    package="org.opencdnunion.streamer.publisher.librtmp">
 
     <application
         android:allowBackup="true"

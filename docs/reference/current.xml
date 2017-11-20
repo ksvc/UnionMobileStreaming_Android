@@ -1,5 +1,5 @@
 <api>
-<package name="com.ksyun.media.streamer.avAdaptor"
+<package name="org.opencdnunion.media.streamer.avAdaptor"
 >
 <class name="AVAdapter"
  extends="java.lang.Object"
@@ -10,7 +10,7 @@
  visibility="public"
 >
 <constructor name="AVAdapter"
- type="com.ksyun.media.streamer.avAdaptor.AVAdapter"
+ type="org.opencdnunion.media.streamer.avAdaptor.AVAdapter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -66,7 +66,7 @@
 </parameter>
 </method>
 <method name="getAdapterListener"
- return="com.ksyun.media.streamer.avAdaptor.AVAdapter.AdapterListener"
+ return="org.opencdnunion.media.streamer.avAdaptor.AVAdapter.AdapterListener"
  abstract="false"
  native="false"
  synchronized="false"
@@ -77,7 +77,7 @@
 >
 </method>
 <method name="getAudioSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -98,8 +98,19 @@
  visibility="public"
 >
 </method>
+<method name="getDroppedVideoFrames"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AVPacketBase&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AVPacketBase&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -121,7 +132,7 @@
 >
 </method>
 <method name="getVideoSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -141,7 +152,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="packet" type="com.ksyun.media.streamer.framework.AVPacketBase">
+<parameter name="packet" type="org.opencdnunion.media.streamer.framework.AVPacketBase">
 </parameter>
 </method>
 <method name="isAudioExtraGot"
@@ -276,7 +287,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.avAdaptor.AVAdapter.AdapterListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.avAdaptor.AVAdapter.AdapterListener">
 </parameter>
 </method>
 <method name="setAudioExtra"
@@ -289,7 +300,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="audioExtra" type="com.ksyun.media.streamer.framework.AVPacketBase">
+<parameter name="audioExtra" type="org.opencdnunion.media.streamer.framework.AVPacketBase">
 </parameter>
 </method>
 <method name="setAudioOnly"
@@ -328,7 +339,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="config" type="com.ksyun.media.streamer.avAdaptor.AVAdapter.BwEstConfig">
+<parameter name="config" type="org.opencdnunion.media.streamer.avAdaptor.AVAdapter.BwEstConfig">
 </parameter>
 </method>
 <method name="setUseSyncMode"
@@ -354,7 +365,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="videoExtra" type="com.ksyun.media.streamer.framework.AVPacketBase">
+<parameter name="videoExtra" type="org.opencdnunion.media.streamer.framework.AVPacketBase">
 </parameter>
 </method>
 <method name="setVideoOnly"
@@ -632,7 +643,7 @@
 >
 </field>
 <field name="mAdapterListener"
- type="com.ksyun.media.streamer.avAdaptor.AVAdapter.AdapterListener"
+ type="org.opencdnunion.media.streamer.avAdaptor.AVAdapter.AdapterListener"
  transient="false"
  volatile="false"
  static="false"
@@ -652,7 +663,7 @@
 >
 </field>
 <field name="mAdapterWrapper"
- type="com.ksyun.media.streamer.avAdaptor.AVAdapterWrapper"
+ type="org.opencdnunion.media.streamer.avAdaptor.AVAdapterWrapper"
  transient="false"
  volatile="false"
  static="false"
@@ -849,7 +860,7 @@
  visibility="public"
 >
 <constructor name="BwEstConfig"
- type="com.ksyun.media.streamer.avAdaptor.AVAdapter.BwEstConfig"
+ type="org.opencdnunion.media.streamer.avAdaptor.AVAdapter.BwEstConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -926,13 +937,39 @@
  visibility="public"
 >
 <constructor name="AVAdapterWrapper"
- type="com.ksyun.media.streamer.avAdaptor.AVAdapterWrapper"
+ type="org.opencdnunion.media.streamer.avAdaptor.AVAdapterWrapper"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
 </constructor>
+<method name="getPropertyInt"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="property" type="int">
+</parameter>
+</method>
+<method name="getPropertyLong"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="property" type="int">
+</parameter>
+</method>
 <method name="release"
  return="void"
  abstract="false"
@@ -988,7 +1025,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="event" type="com.ksyun.media.streamer.avAdaptor.AVAdapterWrapper.OnAdapterEvent">
+<parameter name="event" type="org.opencdnunion.media.streamer.avAdaptor.AVAdapterWrapper.OnAdapterEvent">
 </parameter>
 </method>
 <method name="setVideoOnly"
@@ -1135,6 +1172,83 @@
  visibility="public"
 >
 </field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_FRAME_NUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_SEND_DELAY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_TS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_DROPPED_VIDEO_FRAMES"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_UPLOADED_KBYTES"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_VIDEO_CACHE_LENGTH"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="7"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_VIDEO_FRAME_NUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 </class>
 <interface name="AVAdapterWrapper.OnAdapterEvent"
  abstract="true"
@@ -1181,7 +1295,7 @@
 </method>
 </interface>
 </package>
-<package name="com.ksyun.media.streamer.capture"
+<package name="org.opencdnunion.media.streamer.capture"
 >
 <class name="AudioCapture"
  extends="java.lang.Object"
@@ -1192,7 +1306,7 @@
  visibility="public"
 >
 <constructor name="AudioCapture"
- type="com.ksyun.media.streamer.capture.AudioCapture"
+ type="org.opencdnunion.media.streamer.capture.AudioCapture"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -1235,7 +1349,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -1288,7 +1402,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.capture.AudioCapture.OnAudioCaptureListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.capture.AudioCapture.OnAudioCaptureListener">
 </parameter>
 </method>
 <method name="setAudioCaptureType"
@@ -1340,7 +1454,7 @@
  deprecated="deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.kit.OnAudioRawDataListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.kit.OnAudioRawDataListener">
 </parameter>
 </method>
 <method name="setSampleRate"
@@ -1480,7 +1594,7 @@
 >
 </field>
 <field name="mSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -1533,7 +1647,7 @@
  visibility="public"
 >
 <constructor name="CameraCapture"
- type="com.ksyun.media.streamer.capture.CameraCapture"
+ type="org.opencdnunion.media.streamer.capture.CameraCapture"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -1541,7 +1655,7 @@
 >
 <parameter name="context" type="Context">
 </parameter>
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="autoFocus"
@@ -1635,7 +1749,7 @@
 >
 </method>
 <method name="getTargetPreviewSize"
- return="com.ksyun.media.streamer.capture.CameraCapture.Size"
+ return="org.opencdnunion.media.streamer.capture.CameraCapture.Size"
  abstract="false"
  native="false"
  synchronized="false"
@@ -1753,7 +1867,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.capture.CameraCapture.OnCameraCaptureListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.capture.CameraCapture.OnCameraCaptureListener">
 </parameter>
 </method>
 <method name="setOnPreviewFrameListener"
@@ -1766,7 +1880,7 @@
  deprecated="deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.kit.OnPreviewFrameListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.kit.OnPreviewFrameListener">
 </parameter>
 </method>
 <method name="setOrientation"
@@ -2013,7 +2127,7 @@
 >
 </field>
 <field name="mImgBufSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2023,7 +2137,7 @@
 >
 </field>
 <field name="mImgTexSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2087,7 +2201,7 @@
  visibility="public"
 >
 <constructor name="Size"
- type="com.ksyun.media.streamer.capture.CameraCapture.Size"
+ type="org.opencdnunion.media.streamer.capture.CameraCapture.Size"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -2128,13 +2242,13 @@
  visibility="public"
 >
 <constructor name="ImageCapture"
- type="com.ksyun.media.streamer.capture.ImageCapture"
+ type="org.opencdnunion.media.streamer.capture.ImageCapture"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getRepeatFps"
@@ -2149,7 +2263,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2237,7 +2351,7 @@
 </field>
 </class>
 <class name="ImgBufSrcPin"
- extends="com.ksyun.media.streamer.framework.SrcPin"
+ extends="org.opencdnunion.media.streamer.framework.SrcPin"
  abstract="false"
  static="false"
  final="false"
@@ -2245,7 +2359,7 @@
  visibility="public"
 >
 <constructor name="ImgBufSrcPin"
- type="com.ksyun.media.streamer.capture.ImgBufSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgBufSrcPin"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -2280,7 +2394,7 @@
 </method>
 </class>
 <class name="ImgTexSrcPin"
- extends="com.ksyun.media.streamer.framework.SrcPin"
+ extends="org.opencdnunion.media.streamer.framework.SrcPin"
  abstract="false"
  static="false"
  final="false"
@@ -2288,13 +2402,13 @@
  visibility="public"
 >
 <constructor name="ImgTexSrcPin"
- type="com.ksyun.media.streamer.capture.ImgTexSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgTexSrcPin"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getUseSyncMode"
@@ -2514,17 +2628,17 @@
  visibility="public"
 >
 <constructor name="ViewCapture"
- type="com.ksyun.media.streamer.capture.ViewCapture"
+ type="org.opencdnunion.media.streamer.capture.ViewCapture"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2651,17 +2765,17 @@
  visibility="public"
 >
 <constructor name="WaterMarkCapture"
- type="com.ksyun.media.streamer.capture.WaterMarkCapture"
+ type="org.opencdnunion.media.streamer.capture.WaterMarkCapture"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getLogoBufSrcPin"
- return="com.ksyun.media.streamer.capture.ImgBufSrcPin"
+ return="org.opencdnunion.media.streamer.capture.ImgBufSrcPin"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2672,7 +2786,7 @@
 >
 </method>
 <method name="getLogoTexSrcPin"
- return="com.ksyun.media.streamer.capture.ImgTexSrcPin"
+ return="org.opencdnunion.media.streamer.capture.ImgTexSrcPin"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2683,7 +2797,7 @@
 >
 </method>
 <method name="getTimeBufSrcPin"
- return="com.ksyun.media.streamer.capture.ImgBufSrcPin"
+ return="org.opencdnunion.media.streamer.capture.ImgBufSrcPin"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2694,7 +2808,7 @@
 >
 </method>
 <method name="getTimeTexSrcPin"
- return="com.ksyun.media.streamer.capture.ImgTexSrcPin"
+ return="org.opencdnunion.media.streamer.capture.ImgTexSrcPin"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2823,7 +2937,7 @@
 </parameter>
 </method>
 <field name="mLogoBufSrcPin"
- type="com.ksyun.media.streamer.capture.ImgBufSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgBufSrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2833,7 +2947,7 @@
 >
 </field>
 <field name="mLogoTexSrcPin"
- type="com.ksyun.media.streamer.capture.ImgTexSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgTexSrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2843,7 +2957,7 @@
 >
 </field>
 <field name="mTimeBufSrcPin"
- type="com.ksyun.media.streamer.capture.ImgBufSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgBufSrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2853,7 +2967,7 @@
 >
 </field>
 <field name="mTimeTexSrcPin"
- type="com.ksyun.media.streamer.capture.ImgTexSrcPin"
+ type="org.opencdnunion.media.streamer.capture.ImgTexSrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -2864,7 +2978,7 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.capture.audio"
+<package name="org.opencdnunion.media.streamer.capture.audio"
 >
 <interface name="IKSYAudioRecord"
  abstract="true"
@@ -2960,7 +3074,7 @@
 </method>
 </interface>
 </package>
-<package name="com.ksyun.media.streamer.capture.camera"
+<package name="org.opencdnunion.media.streamer.capture.camera"
 >
 <class name="CameraTouchHelper"
  extends="java.lang.Object"
@@ -2971,7 +3085,7 @@
  visibility="public"
 >
 <constructor name="CameraTouchHelper"
- type="com.ksyun.media.streamer.capture.camera.CameraTouchHelper"
+ type="org.opencdnunion.media.streamer.capture.camera.CameraTouchHelper"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -2988,7 +3102,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="touchListener" type="com.ksyun.media.streamer.capture.camera.CameraTouchHelper.OnTouchListener">
+<parameter name="touchListener" type="org.opencdnunion.media.streamer.capture.camera.CameraTouchHelper.OnTouchListener">
 </parameter>
 </method>
 <method name="onTouch"
@@ -3027,7 +3141,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="touchListener" type="com.ksyun.media.streamer.capture.camera.CameraTouchHelper.OnTouchListener">
+<parameter name="touchListener" type="org.opencdnunion.media.streamer.capture.camera.CameraTouchHelper.OnTouchListener">
 </parameter>
 </method>
 <method name="setCameraCapture"
@@ -3040,7 +3154,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="cameraCapture" type="com.ksyun.media.streamer.capture.CameraCapture">
+<parameter name="cameraCapture" type="org.opencdnunion.media.streamer.capture.CameraCapture">
 </parameter>
 </method>
 <method name="setCameraHintView"
@@ -3053,7 +3167,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="view" type="com.ksyun.media.streamer.capture.camera.ICameraHintView">
+<parameter name="view" type="org.opencdnunion.media.streamer.capture.camera.ICameraHintView">
 </parameter>
 </method>
 <method name="setEnableTouchFocus"
@@ -3206,10 +3320,10 @@
 </method>
 </interface>
 </package>
-<package name="com.ksyun.media.streamer.encoder"
+<package name="org.opencdnunion.media.streamer.encoder"
 >
 <class name="AudioEncoderBase"
- extends="com.ksyun.media.streamer.encoder.Encoder"
+ extends="org.opencdnunion.media.streamer.encoder.Encoder"
  abstract="true"
  static="false"
  final="false"
@@ -3217,7 +3331,7 @@
  visibility="public"
 >
 <constructor name="AudioEncoderBase"
- type="com.ksyun.media.streamer.encoder.AudioEncoderBase"
+ type="org.opencdnunion.media.streamer.encoder.AudioEncoderBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -3247,7 +3361,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFrameAvailable"
@@ -3260,7 +3374,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFrameDropped"
@@ -3273,7 +3387,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doStart"
@@ -3286,7 +3400,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="config" type="com.ksyun.media.streamer.framework.AudioEncodeConfig">
+<parameter name="config" type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig">
 </parameter>
 </method>
 <method name="doStart"
@@ -3323,7 +3437,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="sendEncodedPacket"
@@ -3368,7 +3482,7 @@
 >
 </field>
 <field name="mAudioBufferCache"
- type="com.ksyun.media.streamer.util.FrameBufferCache"
+ type="org.opencdnunion.media.streamer.util.FrameBufferCache"
  transient="false"
  volatile="false"
  static="false"
@@ -3378,7 +3492,7 @@
 >
 </field>
 <field name="mAudioEncodeConfig"
- type="com.ksyun.media.streamer.framework.AudioEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -3388,7 +3502,7 @@
 >
 </field>
 <field name="mOutConfig"
- type="com.ksyun.media.streamer.framework.AudioEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -3407,7 +3521,7 @@
  visibility="public"
 >
 <constructor name="Encoder"
- type="com.ksyun.media.streamer.encoder.Encoder"
+ type="org.opencdnunion.media.streamer.encoder.Encoder"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -3572,7 +3686,7 @@
 >
 </method>
 <method name="getEncoderInfoListener"
- return="com.ksyun.media.streamer.encoder.Encoder.EncoderInfoListener"
+ return="org.opencdnunion.media.streamer.encoder.Encoder.EncoderInfoListener"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3583,7 +3697,7 @@
 >
 </method>
 <method name="getEncoderListener"
- return="com.ksyun.media.streamer.encoder.Encoder.EncoderListener"
+ return="org.opencdnunion.media.streamer.encoder.Encoder.EncoderListener"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3605,7 +3719,7 @@
 >
 </method>
 <method name="getExtra"
- return="com.ksyun.media.streamer.framework.AVPacketBase"
+ return="org.opencdnunion.media.streamer.framework.AVPacketBase"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3638,7 +3752,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;I&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;I&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3649,7 +3763,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;O&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;O&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3806,7 +3920,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="infoListener" type="com.ksyun.media.streamer.encoder.Encoder.EncoderInfoListener">
+<parameter name="infoListener" type="org.opencdnunion.media.streamer.encoder.Encoder.EncoderInfoListener">
 </parameter>
 </method>
 <method name="setEncoderListener"
@@ -3819,7 +3933,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.encoder.Encoder.EncoderListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.encoder.Encoder.EncoderListener">
 </parameter>
 </method>
 <method name="setMute"
@@ -4098,7 +4212,7 @@
 >
 </field>
 <field name="mSinkPin"
- type="com.ksyun.media.streamer.framework.SinkPin"
+ type="org.opencdnunion.media.streamer.framework.SinkPin"
  transient="false"
  volatile="false"
  static="false"
@@ -4108,7 +4222,7 @@
 >
 </field>
 <field name="mSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -4165,7 +4279,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="encoder" type="com.ksyun.media.streamer.encoder.Encoder">
+<parameter name="encoder" type="org.opencdnunion.media.streamer.encoder.Encoder">
 </parameter>
 <parameter name="type" type="int">
 </parameter>
@@ -4190,14 +4304,14 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="encoder" type="com.ksyun.media.streamer.encoder.Encoder">
+<parameter name="encoder" type="org.opencdnunion.media.streamer.encoder.Encoder">
 </parameter>
 <parameter name="err" type="int">
 </parameter>
 </method>
 </interface>
 <class name="MediaCodecAudioEncoder"
- extends="com.ksyun.media.streamer.encoder.MediaCodecEncoderBase"
+ extends="org.opencdnunion.media.streamer.encoder.MediaCodecEncoderBase"
  abstract="false"
  static="false"
  final="false"
@@ -4205,7 +4319,7 @@
  visibility="public"
 >
 <constructor name="MediaCodecAudioEncoder"
- type="com.ksyun.media.streamer.encoder.MediaCodecAudioEncoder"
+ type="org.opencdnunion.media.streamer.encoder.MediaCodecAudioEncoder"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -4222,7 +4336,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doStart"
@@ -4261,7 +4375,7 @@
 >
 </method>
 <method name="getOutFrame"
- return="com.ksyun.media.streamer.framework.AudioPacket"
+ return="org.opencdnunion.media.streamer.framework.AudioPacket"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4285,7 +4399,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="updateOutFormat"
@@ -4303,7 +4417,7 @@
 </method>
 </class>
 <class name="MediaCodecEncoderBase"
- extends="com.ksyun.media.streamer.encoder.Encoder"
+ extends="org.opencdnunion.media.streamer.encoder.Encoder"
  abstract="true"
  static="false"
  final="false"
@@ -4311,7 +4425,7 @@
  visibility="public"
 >
 <constructor name="MediaCodecEncoderBase"
- type="com.ksyun.media.streamer.encoder.MediaCodecEncoderBase"
+ type="org.opencdnunion.media.streamer.encoder.MediaCodecEncoderBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -4440,7 +4554,7 @@
 </field>
 </class>
 <class name="MediaCodecSurfaceEncoder"
- extends="com.ksyun.media.streamer.encoder.MediaCodecEncoderBase"
+ extends="org.opencdnunion.media.streamer.encoder.MediaCodecEncoderBase"
  abstract="false"
  static="false"
  final="false"
@@ -4448,13 +4562,13 @@
  visibility="public"
 >
 <constructor name="MediaCodecSurfaceEncoder"
- type="com.ksyun.media.streamer.encoder.MediaCodecSurfaceEncoder"
+ type="org.opencdnunion.media.streamer.encoder.MediaCodecSurfaceEncoder"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="doFrameAvailable"
@@ -4467,7 +4581,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgTexFrame">
 </parameter>
 </method>
 <method name="doFrameDropped"
@@ -4480,7 +4594,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgTexFrame">
 </parameter>
 </method>
 <method name="doStart"
@@ -4519,7 +4633,7 @@
 >
 </method>
 <method name="getOutFrame"
- return="com.ksyun.media.streamer.framework.ImgPacket"
+ return="org.opencdnunion.media.streamer.framework.ImgPacket"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4543,7 +4657,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgTexFrame">
 </parameter>
 </method>
 <method name="updateOutFormat"
@@ -4561,7 +4675,7 @@
 </method>
 </class>
 <class name="VideoBufEncoderBase"
- extends="com.ksyun.media.streamer.encoder.Encoder"
+ extends="org.opencdnunion.media.streamer.encoder.Encoder"
  abstract="true"
  static="false"
  final="false"
@@ -4569,7 +4683,7 @@
  visibility="public"
 >
 <constructor name="VideoBufEncoderBase"
- type="com.ksyun.media.streamer.encoder.VideoBufEncoderBase"
+ type="org.opencdnunion.media.streamer.encoder.VideoBufEncoderBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -4586,7 +4700,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="doFrameAvailable"
@@ -4599,7 +4713,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="doFrameDropped"
@@ -4612,7 +4726,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="doStart"
@@ -4625,7 +4739,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="config" type="com.ksyun.media.streamer.framework.VideoEncodeConfig">
+<parameter name="config" type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig">
 </parameter>
 </method>
 <method name="doStart"
@@ -4662,7 +4776,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="sendEncodedPacket"
@@ -4717,7 +4831,7 @@
 >
 </field>
 <field name="mFrameBufferCache"
- type="com.ksyun.media.streamer.util.FrameBufferCache"
+ type="org.opencdnunion.media.streamer.util.FrameBufferCache"
  transient="false"
  volatile="false"
  static="false"
@@ -4727,7 +4841,7 @@
 >
 </field>
 <field name="mOutConfig"
- type="com.ksyun.media.streamer.framework.VideoEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -4737,7 +4851,7 @@
 >
 </field>
 <field name="mVideoEncodeConfig"
- type="com.ksyun.media.streamer.framework.VideoEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -4748,10 +4862,10 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.filter.audio"
+<package name="org.opencdnunion.media.streamer.filter.audio"
 >
 <class name="APMFilter"
- extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -4759,7 +4873,7 @@
  visibility="public"
 >
 <constructor name="APMFilter"
- type="com.ksyun.media.streamer.filter.audio.APMFilter"
+ type="org.opencdnunion.media.streamer.filter.audio.APMFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -4767,7 +4881,7 @@
 >
 </constructor>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4776,11 +4890,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4789,7 +4903,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="enableNs"
@@ -4828,7 +4942,7 @@
  visibility="public"
 >
 <constructor name="APMWrapper"
- type="com.ksyun.media.streamer.filter.audio.APMWrapper"
+ type="org.opencdnunion.media.streamer.filter.audio.APMWrapper"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -4881,7 +4995,7 @@
 </parameter>
 </method>
 <method name="getAPMFormate"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5051,7 +5165,7 @@
  visibility="public"
 >
 <constructor name="AudioAPMFilterMgt"
- type="com.ksyun.media.streamer.filter.audio.AudioAPMFilterMgt"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioAPMFilterMgt"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5081,7 +5195,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5092,7 +5206,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5193,7 +5307,7 @@
  visibility="public"
 >
 <constructor name="AudioFilterBase"
- type="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5218,7 +5332,7 @@
 </parameter>
 </method>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="true"
  native="false"
  synchronized="false"
@@ -5227,11 +5341,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="true"
  native="false"
  synchronized="false"
@@ -5240,7 +5354,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="doRelease"
@@ -5266,7 +5380,7 @@
 >
 </method>
 <method name="getOutFormat"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5277,7 +5391,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5288,7 +5402,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5334,7 +5448,7 @@
  visibility="public"
 >
 <constructor name="AudioFilterMgt"
- type="com.ksyun.media.streamer.filter.audio.AudioFilterMgt"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioFilterMgt"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5342,7 +5456,7 @@
 >
 </constructor>
 <method name="getFilter"
- return="java.util.List&lt;com.ksyun.media.streamer.filter.audio.AudioFilterBase&gt;"
+ return="java.util.List&lt;org.opencdnunion.media.streamer.filter.audio.AudioFilterBase&gt;"
  abstract="false"
  native="false"
  synchronized="true"
@@ -5353,7 +5467,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5364,7 +5478,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5384,7 +5498,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.audio.AudioFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase">
 </parameter>
 </method>
 <method name="setFilter"
@@ -5397,7 +5511,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filterArray" type="com.ksyun.media.streamer.filter.audio.AudioFilterBase[]">
+<parameter name="filterArray" type="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase[]">
 </parameter>
 </method>
 <method name="setFilter"
@@ -5410,7 +5524,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.audio.AudioFilterBase&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends org.opencdnunion.media.streamer.filter.audio.AudioFilterBase&gt;">
 </parameter>
 </method>
 </class>
@@ -5423,7 +5537,7 @@
  visibility="public"
 >
 <constructor name="AudioMixer"
- type="com.ksyun.media.streamer.filter.audio.AudioMixer"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioMixer"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5481,7 +5595,7 @@
 >
 <parameter name="idx" type="int">
 </parameter>
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="doFrameAvailable"
@@ -5496,7 +5610,7 @@
 >
 <parameter name="idx" type="int">
 </parameter>
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="getBlockingMode"
@@ -5557,7 +5671,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5581,7 +5695,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5671,7 +5785,7 @@
 </method>
 </class>
 <class name="AudioPreview"
- extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -5679,7 +5793,7 @@
  visibility="public"
 >
 <constructor name="AudioPreview"
- type="com.ksyun.media.streamer.filter.audio.AudioPreview"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioPreview"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5689,7 +5803,7 @@
 </parameter>
 </constructor>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5698,11 +5812,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5711,7 +5825,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="pause"
@@ -5794,7 +5908,7 @@
  visibility="public"
 >
 <constructor name="AudioResample"
- type="com.ksyun.media.streamer.filter.audio.AudioResample"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioResample"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5802,15 +5916,15 @@
 >
 </constructor>
 <constructor name="AudioResample"
- type="com.ksyun.media.streamer.filter.audio.AudioResample"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioResample"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="inFormat" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="inFormat" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
-<parameter name="outFormat" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="outFormat" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </constructor>
 <method name="attachTo"
@@ -5914,7 +6028,7 @@
 </method>
 </class>
 <class name="AudioResampleFilter"
- extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -5922,7 +6036,7 @@
  visibility="public"
 >
 <constructor name="AudioResampleFilter"
- type="com.ksyun.media.streamer.filter.audio.AudioResampleFilter"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioResampleFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5930,7 +6044,7 @@
 >
 </constructor>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5939,11 +6053,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="inputFrame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="inputFrame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5952,11 +6066,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="getOutFormat"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5976,12 +6090,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="outFormat" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="outFormat" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 </class>
 <class name="AudioReverbFilter"
- extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -5989,7 +6103,7 @@
  visibility="public"
 >
 <constructor name="AudioReverbFilter"
- type="com.ksyun.media.streamer.filter.audio.AudioReverbFilter"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioReverbFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -5997,7 +6111,7 @@
 >
 </constructor>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6006,11 +6120,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6019,7 +6133,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="getReverbType"
@@ -6119,7 +6233,7 @@
  visibility="public"
 >
 <constructor name="AudioSLPlayer"
- type="com.ksyun.media.streamer.filter.audio.AudioSLPlayer"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioSLPlayer"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -6307,7 +6421,7 @@
  visibility="public"
 >
 <constructor name="AudioTrackPlayer"
- type="com.ksyun.media.streamer.filter.audio.AudioTrackPlayer"
+ type="org.opencdnunion.media.streamer.filter.audio.AudioTrackPlayer"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -6427,7 +6541,7 @@
 </method>
 </class>
 <class name="KSYAudioEffectFilter"
- extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.audio.AudioFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -6435,7 +6549,7 @@
  visibility="public"
 >
 <constructor name="KSYAudioEffectFilter"
- type="com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter"
+ type="org.opencdnunion.media.streamer.filter.audio.KSYAudioEffectFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -6445,7 +6559,7 @@
 </parameter>
 </constructor>
 <method name="doFilter"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6454,11 +6568,11 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
 <method name="doFormatChanged"
- return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ return="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6467,7 +6581,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <method name="getAudioEffectType"
@@ -6640,10 +6754,10 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.filter.imgbuf"
+<package name="org.opencdnunion.media.streamer.filter.imgbuf"
 >
 <class name="ImgBufBeautyFilter"
- extends="com.ksyun.media.streamer.filter.imgbuf.ImgBufFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -6651,13 +6765,13 @@
  visibility="public"
 >
 <constructor name="ImgBufBeautyFilter"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufBeautyFilter"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufBeautyFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="imgPreProcessWrap" type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap">
+<parameter name="imgPreProcessWrap" type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap">
 </parameter>
 </constructor>
 <method name="doFilter"
@@ -6683,7 +6797,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgBufFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6738,17 +6852,17 @@
  visibility="public"
 >
 <constructor name="ImgBufFilterBase"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufFilterBase"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufFilterBase"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="imgPreProcessWrap" type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap">
+<parameter name="imgPreProcessWrap" type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap">
 </parameter>
 </constructor>
 <constructor name="ImgBufFilterBase"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufFilterBase"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufFilterBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -6778,7 +6892,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6789,7 +6903,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6813,7 +6927,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6824,7 +6938,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgBufFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  abstract="true"
  native="false"
  synchronized="false"
@@ -6846,7 +6960,7 @@
 >
 <parameter name="idx" type="int">
 </parameter>
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgBufFormat">
 </parameter>
 </method>
 <method name="release"
@@ -6896,7 +7010,7 @@
 >
 </field>
 <field name="mImagePreProcess"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap"
  transient="false"
  volatile="false"
  static="false"
@@ -6906,7 +7020,7 @@
 >
 </field>
 <field name="mInputFrames"
- type="com.ksyun.media.streamer.framework.ImgBufFrame[]"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFrame[]"
  transient="false"
  volatile="false"
  value="null"
@@ -6927,7 +7041,7 @@
 >
 </field>
 <field name="mOutPutFrame"
- type="com.ksyun.media.streamer.framework.ImgBufFrame"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  transient="false"
  volatile="false"
  static="false"
@@ -6938,7 +7052,7 @@
 </field>
 </class>
 <class name="ImgBufMixer"
- extends="com.ksyun.media.streamer.filter.imgbuf.ImgBufFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -6946,13 +7060,13 @@
  visibility="public"
 >
 <constructor name="ImgBufMixer"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufMixer"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufMixer"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="imgPreProcessWrap" type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap">
+<parameter name="imgPreProcessWrap" type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap">
 </parameter>
 </constructor>
 <method name="doFilter"
@@ -6978,7 +7092,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgBufFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7045,7 +7159,7 @@
 </method>
 </class>
 <class name="ImgBufScaleFilter"
- extends="com.ksyun.media.streamer.filter.imgbuf.ImgBufFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -7053,17 +7167,17 @@
  visibility="public"
 >
 <constructor name="ImgBufScaleFilter"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufScaleFilter"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufScaleFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="imgPreProcessWrap" type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap">
+<parameter name="imgPreProcessWrap" type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap">
 </parameter>
 </constructor>
 <constructor name="ImgBufScaleFilter"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgBufScaleFilter"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgBufScaleFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7093,7 +7207,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgBufFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7156,7 +7270,7 @@
  visibility="public"
 >
 <constructor name="ImgPreProcessWrap"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7164,7 +7278,7 @@
 >
 </constructor>
 <method name="convertToNv21"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7173,7 +7287,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="src" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="src" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="debugBeautyFlag"
@@ -7237,7 +7351,7 @@
 </parameter>
 </method>
 <method name="processBeauty"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7246,11 +7360,11 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="src" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="src" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="processMixer"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7259,13 +7373,13 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="srcMixerInfo" type="com.ksyun.media.streamer.framework.ImgBufFrame[]">
+<parameter name="srcMixerInfo" type="org.opencdnunion.media.streamer.framework.ImgBufFrame[]">
 </parameter>
-<parameter name="params" type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig[]">
+<parameter name="params" type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig[]">
 </parameter>
 </method>
 <method name="processScale"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7274,11 +7388,11 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="src" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="src" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="processScaleAndConvert2RGBA"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7287,7 +7401,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="src" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="src" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </method>
 <method name="release"
@@ -7352,7 +7466,7 @@
  visibility="public"
 >
 <constructor name="ImgBufMixerConfig"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7370,7 +7484,7 @@
 </parameter>
 </constructor>
 <constructor name="ImgBufMixerConfig"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7390,7 +7504,7 @@
 </parameter>
 </constructor>
 <constructor name="ImgBufMixerConfig"
- type="com.ksyun.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
+ type="org.opencdnunion.media.streamer.filter.imgbuf.ImgPreProcessWrap.ImgBufMixerConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7459,10 +7573,10 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.filter.imgtex"
+<package name="org.opencdnunion.media.streamer.filter.imgtex"
 >
 <class name="ImgBeautyDenoiseFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7470,13 +7584,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautyDenoiseFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyDenoiseFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyDenoiseFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7489,12 +7603,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautyGrindAdvanceFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7502,18 +7616,18 @@
  visibility="public"
 >
 <constructor name="ImgBeautyGrindAdvanceFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyGrindAdvanceFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyGrindAdvanceFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 </class>
 <class name="ImgBeautyIllusionFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7521,13 +7635,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautyIllusionFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyIllusionFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyIllusionFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7540,12 +7654,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautyProFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -7553,25 +7667,25 @@
  visibility="public"
 >
 <constructor name="ImgBeautyProFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyProFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="context" type="Context">
 </parameter>
 </constructor>
 <constructor name="ImgBeautyProFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyProFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="context" type="Context">
 </parameter>
@@ -7579,7 +7693,7 @@
 </parameter>
 </constructor>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7603,7 +7717,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7623,12 +7737,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautySkinWhitenFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7636,13 +7750,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautySkinWhitenFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySkinWhitenFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySkinWhitenFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7655,12 +7769,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautySmoothFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -7668,29 +7782,29 @@
  visibility="public"
 >
 <constructor name="ImgBeautySmoothFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySmoothFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySmoothFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <constructor name="ImgBeautySmoothFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySmoothFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySmoothFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="context" type="Context">
 </parameter>
 </constructor>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7714,7 +7828,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7734,12 +7848,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautySoftExtFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7747,13 +7861,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautySoftExtFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySoftExtFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySoftExtFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7766,12 +7880,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautySoftFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7779,13 +7893,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautySoftFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySoftFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySoftFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7798,12 +7912,12 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
 <class name="ImgBeautySoftSharpenFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -7811,13 +7925,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautySoftSharpenFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySoftSharpenFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySoftSharpenFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -7830,7 +7944,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 </class>
@@ -7843,13 +7957,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautySpecialEffectsFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="context" type="Context">
 </parameter>
@@ -8062,7 +8176,7 @@
 </field>
 </class>
 <class name="ImgBeautyStylizeFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -8070,13 +8184,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautyStylizeFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyStylizeFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyStylizeFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="context" type="Context">
 </parameter>
@@ -8370,7 +8484,7 @@
 </field>
 </class>
 <class name="ImgBeautyToneCurveFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -8378,13 +8492,13 @@
  visibility="public"
 >
 <constructor name="ImgBeautyToneCurveFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onInitialized"
@@ -8432,7 +8546,7 @@
  visibility="public"
 >
 <constructor name="ImgFilterBase"
- type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -8462,7 +8576,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="true"
  native="false"
  synchronized="false"
@@ -8475,7 +8589,7 @@
 </parameter>
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -8497,7 +8611,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="true"
  native="false"
  synchronized="false"
@@ -8598,7 +8712,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
 </parameter>
 </method>
 <method name="setRuddyRatio"
@@ -8628,7 +8742,7 @@
 </parameter>
 </method>
 <field name="mErrorListener"
- type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener"
  transient="false"
  volatile="false"
  static="false"
@@ -8695,14 +8809,14 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilterBase">
 </parameter>
 <parameter name="errno" type="int">
 </parameter>
 </method>
 </interface>
 <class name="ImgTexBufFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="true"
  static="false"
  final="false"
@@ -8710,13 +8824,13 @@
  visibility="public"
 >
 <constructor name="ImgTexBufFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexBufFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="format" type="int">
 </parameter>
@@ -8741,7 +8855,7 @@
 </parameter>
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -8765,7 +8879,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -8794,7 +8908,7 @@
 </method>
 </class>
 <class name="ImgTexFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -8802,23 +8916,23 @@
  visibility="public"
 >
 <constructor name="ImgTexFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <constructor name="ImgTexFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="vertexShader" type="java.lang.String">
 </parameter>
@@ -8826,13 +8940,13 @@
 </parameter>
 </constructor>
 <constructor name="ImgTexFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="vertexShader" type="java.lang.String">
 </parameter>
@@ -8851,7 +8965,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgTexFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgTexFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -8910,7 +9024,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="frames" type="com.ksyun.media.streamer.framework.ImgTexFrame[]">
+<parameter name="frames" type="org.opencdnunion.media.streamer.framework.ImgTexFrame[]">
 </parameter>
 </method>
 <method name="onDrawArraysAfter"
@@ -8945,7 +9059,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 <method name="onFormatChanged"
@@ -8960,7 +9074,7 @@
 >
 <parameter name="inIdx" type="int">
 </parameter>
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 <method name="onInitialized"
@@ -9101,7 +9215,7 @@
 </field>
 </class>
 <class name="ImgTexFilterBase"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="true"
  static="false"
  final="false"
@@ -9109,17 +9223,17 @@
  visibility="public"
 >
 <constructor name="ImgTexFilterBase"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilterBase"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9132,7 +9246,7 @@
 </parameter>
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9143,7 +9257,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgTexFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgTexFormat"
  abstract="true"
  native="false"
  synchronized="false"
@@ -9174,7 +9288,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frames" type="com.ksyun.media.streamer.framework.ImgTexFrame[]">
+<parameter name="frames" type="org.opencdnunion.media.streamer.framework.ImgTexFrame[]">
 </parameter>
 </method>
 <method name="onFormatChanged"
@@ -9189,7 +9303,7 @@
 >
 <parameter name="inIdx" type="int">
 </parameter>
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 <method name="onGLContextReady"
@@ -9235,7 +9349,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+<parameter name="screenShotListener" type="org.opencdnunion.media.streamer.util.gles.GLRender.ScreenShotListener">
 </parameter>
 </method>
 <method name="requestScreenShot"
@@ -9250,7 +9364,7 @@
 >
 <parameter name="scaleFactor" type="float">
 </parameter>
-<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+<parameter name="screenShotListener" type="org.opencdnunion.media.streamer.util.gles.GLRender.ScreenShotListener">
 </parameter>
 </method>
 <method name="sendError"
@@ -9276,7 +9390,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </method>
 <method name="setReuseFbo"
@@ -9315,7 +9429,7 @@
 >
 </field>
 <field name="mGLRender"
- type="com.ksyun.media.streamer.util.gles.GLRender"
+ type="org.opencdnunion.media.streamer.util.gles.GLRender"
  transient="false"
  volatile="false"
  static="false"
@@ -9374,7 +9488,7 @@
  visibility="public"
 >
 <constructor name="ImgTexFilterMgt"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilterMgt"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -9393,7 +9507,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="addFilterAfter"
@@ -9406,9 +9520,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="previous" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="previous" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="addFilterBefore"
@@ -9421,13 +9535,13 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="next" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="next" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="getExtraFilters"
- return="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;"
+ return="java.util.List&lt;org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9438,7 +9552,7 @@
 >
 </method>
 <method name="getFilter"
- return="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;"
+ return="java.util.List&lt;org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase&gt;"
  abstract="false"
  native="false"
  synchronized="true"
@@ -9449,7 +9563,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9460,7 +9574,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9491,9 +9605,9 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="replaced" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="replaced" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 <exception name="InvalidParameterException" type="java.security.InvalidParameterException">
 </exception>
@@ -9508,7 +9622,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="setExtraFilter"
@@ -9521,7 +9635,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase&gt;">
 </parameter>
 </method>
 <method name="setFilter"
@@ -9534,7 +9648,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 <parameter name="filterIdx" type="int">
 </parameter>
@@ -9549,7 +9663,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+<parameter name="filter" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="setFilter"
@@ -9562,7 +9676,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filterArray" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase[]">
+<parameter name="filterArray" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase[]">
 </parameter>
 </method>
 <method name="setFilter"
@@ -9575,7 +9689,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase&gt;">
 </parameter>
 </method>
 <method name="setOnErrorListener"
@@ -9588,7 +9702,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
 </parameter>
 </method>
 <field name="KSY_FILTER_BEAUTY_DENOISE"
@@ -9736,7 +9850,7 @@
 </field>
 </class>
 <class name="ImgTexMixer"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -9744,13 +9858,13 @@
  visibility="public"
 >
 <constructor name="ImgTexMixer"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexMixer"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexMixer"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="getRectForCrop"
@@ -9791,7 +9905,7 @@
 >
 </method>
 <method name="getSrcPinFormat"
- return="com.ksyun.media.streamer.framework.ImgTexFormat"
+ return="org.opencdnunion.media.streamer.framework.ImgTexFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -9811,7 +9925,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="frames" type="com.ksyun.media.streamer.framework.ImgTexFrame[]">
+<parameter name="frames" type="org.opencdnunion.media.streamer.framework.ImgTexFrame[]">
 </parameter>
 </method>
 <method name="onFormatChanged"
@@ -9826,7 +9940,7 @@
 >
 <parameter name="inIdx" type="int">
 </parameter>
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 <method name="setMirror"
@@ -10054,7 +10168,7 @@
  visibility="public"
 >
 <constructor name="ImgTexPreview"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexPreview"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexPreview"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -10073,7 +10187,7 @@
 >
 </method>
 <method name="getGLRender"
- return="com.ksyun.media.streamer.util.gles.GLRender"
+ return="org.opencdnunion.media.streamer.util.gles.GLRender"
  abstract="false"
  native="false"
  synchronized="false"
@@ -10084,7 +10198,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -10181,7 +10295,7 @@
 </method>
 </class>
 <class name="ImgTexScaleFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
  static="false"
  final="false"
@@ -10189,13 +10303,13 @@
  visibility="public"
 >
 <constructor name="ImgTexScaleFilter"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexScaleFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexScaleFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="onFormatChanged"
@@ -10208,7 +10322,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
 <method name="setTargetSize"
@@ -10236,13 +10350,13 @@
  visibility="public"
 >
 <constructor name="ImgTexToBuf"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexToBuf"
+ type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexToBuf"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="doImageAvailable"
@@ -10281,7 +10395,7 @@
 >
 </method>
 <method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -10292,7 +10406,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;org.opencdnunion.media.streamer.framework.ImgBufFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -10334,7 +10448,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgTexToBuf.ErrorListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexToBuf.ErrorListener">
 </parameter>
 </method>
 <method name="setOutputColorFormat"
@@ -10415,7 +10529,7 @@
 >
 </field>
 <field name="mSinkPin"
- type="com.ksyun.media.streamer.framework.SinkPin"
+ type="org.opencdnunion.media.streamer.framework.SinkPin"
  transient="false"
  volatile="false"
  static="false"
@@ -10425,7 +10539,7 @@
 >
 </field>
 <field name="mSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -10462,14 +10576,14 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="imgTexToBuf" type="com.ksyun.media.streamer.filter.imgtex.ImgTexToBuf">
+<parameter name="imgTexToBuf" type="org.opencdnunion.media.streamer.filter.imgtex.ImgTexToBuf">
 </parameter>
 <parameter name="err" type="int">
 </parameter>
 </method>
 </interface>
 <class name="RGBABufFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter"
+ extends="org.opencdnunion.media.streamer.filter.imgtex.ImgTexBufFilter"
  abstract="true"
  static="false"
  final="false"
@@ -10477,13 +10591,13 @@
  visibility="public"
 >
 <constructor name="RGBABufFilter"
- type="com.ksyun.media.streamer.filter.imgtex.RGBABufFilter"
+ type="org.opencdnunion.media.streamer.filter.imgtex.RGBABufFilter"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="doFilter"
@@ -10560,10 +10674,10 @@
 </method>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.framework"
+<package name="org.opencdnunion.media.streamer.framework"
 >
 <class name="AVBufFrame"
- extends="com.ksyun.media.streamer.framework.AVFrameBase"
+ extends="org.opencdnunion.media.streamer.framework.AVFrameBase"
  abstract="false"
  static="false"
  final="false"
@@ -10571,7 +10685,7 @@
  visibility="public"
 >
 <constructor name="AVBufFrame"
- type="com.ksyun.media.streamer.framework.AVBufFrame"
+ type="org.opencdnunion.media.streamer.framework.AVBufFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -10598,7 +10712,7 @@
  visibility="public"
 >
 <constructor name="AVConst"
- type="com.ksyun.media.streamer.framework.AVConst"
+ type="org.opencdnunion.media.streamer.framework.AVConst"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11112,7 +11226,7 @@
  visibility="public"
 >
 <constructor name="AVFrameBase"
- type="com.ksyun.media.streamer.framework.AVFrameBase"
+ type="org.opencdnunion.media.streamer.framework.AVFrameBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11149,7 +11263,7 @@
  visibility="public"
 >
 <constructor name="AVPacketBase"
- type="com.ksyun.media.streamer.framework.AVPacketBase"
+ type="org.opencdnunion.media.streamer.framework.AVPacketBase"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11206,7 +11320,7 @@
  visibility="public"
 >
 <constructor name="AudioBufFormat"
- type="com.ksyun.media.streamer.framework.AudioBufFormat"
+ type="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11220,13 +11334,13 @@
 </parameter>
 </constructor>
 <constructor name="AudioBufFormat"
- type="com.ksyun.media.streamer.framework.AudioBufFormat"
+ type="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </constructor>
 <method name="equals"
@@ -11239,7 +11353,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
 <field name="channels"
@@ -11284,7 +11398,7 @@
 </field>
 </class>
 <class name="AudioBufFrame"
- extends="com.ksyun.media.streamer.framework.AVBufFrame"
+ extends="org.opencdnunion.media.streamer.framework.AVBufFrame"
  abstract="false"
  static="false"
  final="false"
@@ -11292,13 +11406,13 @@
  visibility="public"
 >
 <constructor name="AudioBufFrame"
- type="com.ksyun.media.streamer.framework.AudioBufFrame"
+ type="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.AudioBufFormat">
 </parameter>
 <parameter name="buf" type="java.nio.ByteBuffer">
 </parameter>
@@ -11306,17 +11420,17 @@
 </parameter>
 </constructor>
 <constructor name="AudioBufFrame"
- type="com.ksyun.media.streamer.framework.AudioBufFrame"
+ type="org.opencdnunion.media.streamer.framework.AudioBufFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.AudioBufFrame">
 </parameter>
 </constructor>
 <field name="format"
- type="com.ksyun.media.streamer.framework.AudioBufFormat"
+ type="org.opencdnunion.media.streamer.framework.AudioBufFormat"
  transient="false"
  volatile="false"
  static="false"
@@ -11335,7 +11449,7 @@
  visibility="public"
 >
 <constructor name="AudioEncodeConfig"
- type="com.ksyun.media.streamer.framework.AudioEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11353,13 +11467,13 @@
 </parameter>
 </constructor>
 <constructor name="AudioEncodeConfig"
- type="com.ksyun.media.streamer.framework.AudioEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="config" type="com.ksyun.media.streamer.framework.AudioEncodeConfig">
+<parameter name="config" type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig">
 </parameter>
 </constructor>
 <field name="bitrate"
@@ -11424,7 +11538,7 @@
 </field>
 </class>
 <class name="AudioPacket"
- extends="com.ksyun.media.streamer.framework.AVPacketBase"
+ extends="org.opencdnunion.media.streamer.framework.AVPacketBase"
  abstract="false"
  static="false"
  final="false"
@@ -11432,13 +11546,13 @@
  visibility="public"
 >
 <constructor name="AudioPacket"
- type="com.ksyun.media.streamer.framework.AudioPacket"
+ type="org.opencdnunion.media.streamer.framework.AudioPacket"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="cfg" type="com.ksyun.media.streamer.framework.AudioEncodeConfig">
+<parameter name="cfg" type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig">
 </parameter>
 <parameter name="buf" type="java.nio.ByteBuffer">
 </parameter>
@@ -11446,17 +11560,17 @@
 </parameter>
 </constructor>
 <constructor name="AudioPacket"
- type="com.ksyun.media.streamer.framework.AudioPacket"
+ type="org.opencdnunion.media.streamer.framework.AudioPacket"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="pkt" type="com.ksyun.media.streamer.framework.AudioPacket">
+<parameter name="pkt" type="org.opencdnunion.media.streamer.framework.AudioPacket">
 </parameter>
 </constructor>
 <field name="cfg"
- type="com.ksyun.media.streamer.framework.AudioEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.AudioEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -11475,7 +11589,7 @@
  visibility="public"
 >
 <constructor name="ImgBufFormat"
- type="com.ksyun.media.streamer.framework.ImgBufFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11491,7 +11605,7 @@
 </parameter>
 </constructor>
 <constructor name="ImgBufFormat"
- type="com.ksyun.media.streamer.framework.ImgBufFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11509,7 +11623,7 @@
 </parameter>
 </constructor>
 <constructor name="ImgBufFormat"
- type="com.ksyun.media.streamer.framework.ImgBufFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11579,7 +11693,7 @@
 </field>
 </class>
 <class name="ImgBufFrame"
- extends="com.ksyun.media.streamer.framework.AVBufFrame"
+ extends="org.opencdnunion.media.streamer.framework.AVBufFrame"
  abstract="false"
  static="false"
  final="false"
@@ -11587,13 +11701,13 @@
  visibility="public"
 >
 <constructor name="ImgBufFrame"
- type="com.ksyun.media.streamer.framework.ImgBufFrame"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgBufFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgBufFormat">
 </parameter>
 <parameter name="buf" type="java.nio.ByteBuffer">
 </parameter>
@@ -11601,17 +11715,17 @@
 </parameter>
 </constructor>
 <constructor name="ImgBufFrame"
- type="com.ksyun.media.streamer.framework.ImgBufFrame"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="frame" type="org.opencdnunion.media.streamer.framework.ImgBufFrame">
 </parameter>
 </constructor>
 <field name="format"
- type="com.ksyun.media.streamer.framework.ImgBufFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgBufFormat"
  transient="false"
  volatile="false"
  static="false"
@@ -11622,7 +11736,7 @@
 </field>
 </class>
 <class name="ImgPacket"
- extends="com.ksyun.media.streamer.framework.AVPacketBase"
+ extends="org.opencdnunion.media.streamer.framework.AVPacketBase"
  abstract="false"
  static="false"
  final="false"
@@ -11630,13 +11744,13 @@
  visibility="public"
 >
 <constructor name="ImgPacket"
- type="com.ksyun.media.streamer.framework.ImgPacket"
+ type="org.opencdnunion.media.streamer.framework.ImgPacket"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="cfg" type="com.ksyun.media.streamer.framework.VideoEncodeConfig">
+<parameter name="cfg" type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig">
 </parameter>
 <parameter name="buf" type="java.nio.ByteBuffer">
 </parameter>
@@ -11646,17 +11760,17 @@
 </parameter>
 </constructor>
 <constructor name="ImgPacket"
- type="com.ksyun.media.streamer.framework.ImgPacket"
+ type="org.opencdnunion.media.streamer.framework.ImgPacket"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="pkt" type="com.ksyun.media.streamer.framework.ImgPacket">
+<parameter name="pkt" type="org.opencdnunion.media.streamer.framework.ImgPacket">
 </parameter>
 </constructor>
 <field name="cfg"
- type="com.ksyun.media.streamer.framework.VideoEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig"
  transient="false"
  volatile="false"
  static="false"
@@ -11675,7 +11789,7 @@
  visibility="public"
 >
 <constructor name="ImgTexFormat"
- type="com.ksyun.media.streamer.framework.ImgTexFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgTexFormat"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11753,7 +11867,7 @@
 </field>
 </class>
 <class name="ImgTexFrame"
- extends="com.ksyun.media.streamer.framework.AVFrameBase"
+ extends="org.opencdnunion.media.streamer.framework.AVFrameBase"
  abstract="false"
  static="false"
  final="false"
@@ -11761,13 +11875,13 @@
  visibility="public"
 >
 <constructor name="ImgTexFrame"
- type="com.ksyun.media.streamer.framework.ImgTexFrame"
+ type="org.opencdnunion.media.streamer.framework.ImgTexFrame"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="format" type="org.opencdnunion.media.streamer.framework.ImgTexFormat">
 </parameter>
 <parameter name="textureId" type="int">
 </parameter>
@@ -11788,7 +11902,7 @@
 >
 </field>
 <field name="format"
- type="com.ksyun.media.streamer.framework.ImgTexFormat"
+ type="org.opencdnunion.media.streamer.framework.ImgTexFormat"
  transient="false"
  volatile="false"
  static="false"
@@ -11828,7 +11942,7 @@
  visibility="public"
 >
 <constructor name="PinAdapter"
- type="com.ksyun.media.streamer.framework.PinAdapter"
+ type="org.opencdnunion.media.streamer.framework.PinAdapter"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11836,7 +11950,7 @@
 >
 </constructor>
 <method name="createSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;T&gt;"
+ return="org.opencdnunion.media.streamer.framework.SrcPin&lt;T&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -11860,7 +11974,7 @@
 </parameter>
 </method>
 <field name="mSinkPin"
- type="com.ksyun.media.streamer.framework.SinkPin"
+ type="org.opencdnunion.media.streamer.framework.SinkPin"
  transient="false"
  volatile="false"
  static="false"
@@ -11870,7 +11984,7 @@
 >
 </field>
 <field name="mSrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  transient="false"
  volatile="false"
  static="false"
@@ -11889,7 +12003,7 @@
  visibility="public"
 >
 <constructor name="SinkPin"
- type="com.ksyun.media.streamer.framework.SinkPin"
+ type="org.opencdnunion.media.streamer.framework.SinkPin"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11967,7 +12081,7 @@
  visibility="public"
 >
 <constructor name="SrcPin"
- type="com.ksyun.media.streamer.framework.SrcPin"
+ type="org.opencdnunion.media.streamer.framework.SrcPin"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -11984,7 +12098,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="sinkPin" type="com.ksyun.media.streamer.framework.SinkPin&lt;T&gt;">
+<parameter name="sinkPin" type="org.opencdnunion.media.streamer.framework.SinkPin&lt;T&gt;">
 </parameter>
 </method>
 <method name="disconnect"
@@ -12010,7 +12124,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="sinkPin" type="com.ksyun.media.streamer.framework.SinkPin&lt;T&gt;">
+<parameter name="sinkPin" type="org.opencdnunion.media.streamer.framework.SinkPin&lt;T&gt;">
 </parameter>
 <parameter name="recursive" type="boolean">
 </parameter>
@@ -12082,7 +12196,7 @@
  visibility="public"
 >
 <constructor name="VideoEncodeConfig"
- type="com.ksyun.media.streamer.framework.VideoEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -12098,13 +12212,13 @@
 </parameter>
 </constructor>
 <constructor name="VideoEncodeConfig"
- type="com.ksyun.media.streamer.framework.VideoEncodeConfig"
+ type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="config" type="com.ksyun.media.streamer.framework.VideoEncodeConfig">
+<parameter name="config" type="org.opencdnunion.media.streamer.framework.VideoEncodeConfig">
 </parameter>
 </constructor>
 <field name="bitrate"
@@ -12189,7 +12303,7 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.kit"
+<package name="org.opencdnunion.media.streamer.kit"
 >
 <interface name="OnAudioRawDataListener"
  abstract="true"
@@ -12254,7 +12368,7 @@
  visibility="public"
 >
 <constructor name="StreamerConstants"
- type="com.ksyun.media.streamer.kit.StreamerConstants"
+ type="org.opencdnunion.media.streamer.kit.StreamerConstants"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -12813,7 +12927,7 @@
 </field>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.logstats"
+<package name="org.opencdnunion.media.streamer.logstats"
 >
 <class name="StatsLogReport"
  extends="java.lang.Object"
@@ -12850,7 +12964,7 @@
 >
 </method>
 <method name="getInstance"
- return="com.ksyun.media.streamer.logstats.StatsLogReport"
+ return="org.opencdnunion.media.streamer.logstats.StatsLogReport"
  abstract="false"
  native="false"
  synchronized="false"
@@ -12985,7 +13099,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="logEventListener" type="com.ksyun.media.streamer.logstats.StatsLogReport.OnLogEventListener">
+<parameter name="logEventListener" type="org.opencdnunion.media.streamer.logstats.StatsLogReport.OnLogEventListener">
 </parameter>
 </method>
 <method name="setTargetResolution"
@@ -13150,7 +13264,399 @@
 </method>
 </interface>
 </package>
-<package name="com.ksyun.media.streamer.util"
+<package name="org.opencdnunion.media.streamer.publisher"
+>
+<class name="Publisher"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="Publisher"
+ type="org.opencdnunion.media.streamer.publisher.Publisher"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="doFormatChanged"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="format" type="java.lang.Object">
+</parameter>
+</method>
+<method name="doFrameAvailable"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="packet" type="org.opencdnunion.media.streamer.framework.AVPacketBase">
+</parameter>
+</method>
+<method name="doRelease"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="doStart"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="url" type="java.lang.String">
+</parameter>
+</method>
+<method name="doStop"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getAVSinkPin"
+ return="org.opencdnunion.media.streamer.framework.SinkPin&lt;org.opencdnunion.media.streamer.framework.AVPacketBase&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCurrentUploadKBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getUploadedKBytes"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setPubListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="org.opencdnunion.media.streamer.publisher.Publisher.PubListener">
+</parameter>
+</method>
+<method name="start"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="url" type="java.lang.String">
+</parameter>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="ERROR_START_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-3001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ERROR_STOP_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-3003"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ERROR_UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-3000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ERROR_WRITE_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-3002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INFO_STARTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INFO_STOPPED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STATE_IDLE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STATE_PUBLISHING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STATE_STARTING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STATE_STOPPING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="mCurrentUploadKBitrate"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mLastSendTime"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mLastUploadedKBytes"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPubListener"
+ type="org.opencdnunion.media.streamer.publisher.Publisher.PubListener"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPublishHandler"
+ type="Handler"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPublishThread"
+ type="HandlerThread"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mState"
+ type="java.util.concurrent.atomic.AtomicInteger"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mUploadedBytes"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<interface name="Publisher.PubListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onError"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="err" type="int">
+</parameter>
+<parameter name="msg" type="long">
+</parameter>
+</method>
+<method name="onInfo"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="int">
+</parameter>
+<parameter name="msg" type="long">
+</parameter>
+</method>
+</interface>
+</package>
+<package name="org.opencdnunion.media.streamer.util"
 >
 <class name="BitmapLoader"
  extends="java.lang.Object"
@@ -13161,7 +13667,7 @@
  visibility="public"
 >
 <constructor name="BitmapLoader"
- type="com.ksyun.media.streamer.util.BitmapLoader"
+ type="org.opencdnunion.media.streamer.util.BitmapLoader"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13212,7 +13718,7 @@
  visibility="public"
 >
 <constructor name="ContextUtil"
- type="com.ksyun.media.streamer.util.ContextUtil"
+ type="org.opencdnunion.media.streamer.util.ContextUtil"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13240,7 +13746,7 @@
  visibility="public"
 >
 <constructor name="FrameBufferCache"
- type="com.ksyun.media.streamer.util.FrameBufferCache"
+ type="org.opencdnunion.media.streamer.util.FrameBufferCache"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13318,7 +13824,7 @@
 </method>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.util.audio"
+<package name="org.opencdnunion.media.streamer.util.audio"
 >
 <class name="AudioUtil"
  extends="java.lang.Object"
@@ -13329,7 +13835,7 @@
  visibility="public"
 >
 <constructor name="AudioUtil"
- type="com.ksyun.media.streamer.util.audio.AudioUtil"
+ type="org.opencdnunion.media.streamer.util.audio.AudioUtil"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13366,7 +13872,7 @@
 </method>
 </class>
 </package>
-<package name="com.ksyun.media.streamer.util.device"
+<package name="org.opencdnunion.media.streamer.util.device"
 >
 <class name="DeviceInfo"
  extends="java.lang.Object"
@@ -13377,7 +13883,7 @@
  visibility="public"
 >
 <constructor name="DeviceInfo"
- type="com.ksyun.media.streamer.util.device.DeviceInfo"
+ type="org.opencdnunion.media.streamer.util.device.DeviceInfo"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13389,7 +13895,7 @@
 </parameter>
 </constructor>
 <constructor name="DeviceInfo"
- type="com.ksyun.media.streamer.util.device.DeviceInfo"
+ type="org.opencdnunion.media.streamer.util.device.DeviceInfo"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13403,7 +13909,7 @@
 </parameter>
 </constructor>
 <constructor name="DeviceInfo"
- type="com.ksyun.media.streamer.util.device.DeviceInfo"
+ type="org.opencdnunion.media.streamer.util.device.DeviceInfo"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13426,7 +13932,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="info" type="com.ksyun.media.streamer.util.device.DeviceInfo">
+<parameter name="info" type="org.opencdnunion.media.streamer.util.device.DeviceInfo">
 </parameter>
 </method>
 <method name="printDeviceInfo"
@@ -13578,7 +14084,7 @@
  visibility="public"
 >
 <method name="getDeviceInfo"
- return="com.ksyun.media.streamer.util.device.DeviceInfo"
+ return="org.opencdnunion.media.streamer.util.device.DeviceInfo"
  abstract="false"
  native="false"
  synchronized="false"
@@ -13589,7 +14095,7 @@
 >
 </method>
 <method name="getInstance"
- return="com.ksyun.media.streamer.util.device.DeviceInfoTools"
+ return="org.opencdnunion.media.streamer.util.device.DeviceInfoTools"
  abstract="false"
  native="false"
  synchronized="false"
@@ -13624,7 +14130,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.util.device.DeviceInfoTools.OnRequesetDeviceInfoListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.util.device.DeviceInfoTools.OnRequesetDeviceInfoListener">
 </parameter>
 <parameter name="model" type="java.lang.String">
 </parameter>
@@ -13665,7 +14171,7 @@
 >
 </field>
 <field name="mRequestListener"
- type="com.ksyun.media.streamer.util.device.DeviceInfoTools.OnRequesetDeviceInfoListener"
+ type="org.opencdnunion.media.streamer.util.device.DeviceInfoTools.OnRequesetDeviceInfoListener"
  transient="false"
  volatile="false"
  static="false"
@@ -13712,7 +14218,7 @@
 </method>
 </interface>
 </package>
-<package name="com.ksyun.media.streamer.util.gles"
+<package name="org.opencdnunion.media.streamer.util.gles"
 >
 <class name="FboManager"
  extends="java.lang.Object"
@@ -13723,7 +14229,7 @@
  visibility="public"
 >
 <constructor name="FboManager"
- type="com.ksyun.media.streamer.util.gles.FboManager"
+ type="org.opencdnunion.media.streamer.util.gles.FboManager"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13840,7 +14346,7 @@
  visibility="public"
 >
 <constructor name="GLRender"
- type="com.ksyun.media.streamer.util.gles.GLRender"
+ type="org.opencdnunion.media.streamer.util.gles.GLRender"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13848,7 +14354,7 @@
 >
 </constructor>
 <constructor name="GLRender"
- type="com.ksyun.media.streamer.util.gles.GLRender"
+ type="org.opencdnunion.media.streamer.util.gles.GLRender"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -13867,7 +14373,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.util.gles.GLRender.GLRenderListener">
 </parameter>
 </method>
 <method name="getCurrentView"
@@ -13904,7 +14410,7 @@
 >
 </method>
 <method name="getFboManager"
- return="com.ksyun.media.streamer.util.gles.FboManager"
+ return="org.opencdnunion.media.streamer.util.gles.FboManager"
  abstract="false"
  native="false"
  synchronized="false"
@@ -14057,7 +14563,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
+<parameter name="listener" type="org.opencdnunion.media.streamer.util.gles.GLRender.GLRenderListener">
 </parameter>
 </method>
 <method name="requestRender"
@@ -14248,13 +14754,13 @@
  visibility="public"
 >
 <constructor name="YUVLoader"
- type="com.ksyun.media.streamer.util.gles.YUVLoader"
+ type="org.opencdnunion.media.streamer.util.gles.YUVLoader"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+<parameter name="glRender" type="org.opencdnunion.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
 <method name="loadTexture"

@@ -22,7 +22,6 @@
 
 #define RTMP_HEAD_SIZE          (sizeof(RTMPPacket) + RTMP_MAX_HEADER_SIZE)
 #define RTMP_AACSPECINFO_LEN    2
-#define RTMP_AUDIOSPECCFG_LEN   2
 #define RTMP_VIDEOHEADER_LEN    5
 #define RTMP_VIDEODATA_Padding  20         //video frame多分配一点空间，防止nal startcode只有3位时分配空间不足
 #define RTMP_METADATA_MAXLEN    1024
@@ -38,6 +37,7 @@ typedef struct UnionLibrtmp {
 
     bool                    bInitAudio;
     bool                    bInitVideo;
+    bool                    bSendMeta;
     
     int64_t                 videoBaseTime;
     int64_t                 audioBaseTime;
@@ -51,6 +51,8 @@ typedef struct UnionLibrtmp {
     UnionAudioEncCfg        audioEncCfg;
     
     pthread_mutex_t         mutex;
+    
+    UnionDict                   userMetadata;
 }UnionLibrtmp_t;
 
 /**
@@ -409,24 +411,21 @@ static int union_librtmp_send_videoframe(UnionLibrtmp_t *librtmp, UnionAVPacket 
 /**
  * @abstract 发送AudioSpecificInfo
  */
-static int union_librtmp_send_audiospec(UnionLibrtmp_t *librtmp)
+static int union_librtmp_send_audiospec(UnionLibrtmp_t *librtmp, UnionAVPacket *packet)
 {
-    uint16_t audiospeccfg = 0;
     char *body = NULL;
     int ret = -1;
     
-    int size =  RTMP_AACSPECINFO_LEN + RTMP_AUDIOSPECCFG_LEN;
+    int size = RTMP_AACSPECINFO_LEN + packet->size;
     RTMPPacket *rtmpPacket = union_librtmp_create_rtmppacket(size);
     if(rtmpPacket)
     {
         if(UNION_CODEC_ID_AAC == librtmp->audioEncCfg.codecId )
         {
             body = rtmpPacket->m_body;
-            audiospeccfg = unionflv_get_aac_speccfg(&librtmp->audioEncCfg);
             body[0] = unionflv_get_audio_flags(&librtmp->audioEncCfg);
             body[1] = 0x00;
-            body[2] = (audiospeccfg >> 8) & 0xFF;
-            body[3] = audiospeccfg & 0xFF;
+            memcpy(&body[2], packet->data, packet->size);
             
             ret = union_librtmp_send_packet(librtmp->rtmpHandle, rtmpPacket, size, 0, RTMP_PACKET_TYPE_AUDIO);
         }
@@ -449,35 +448,66 @@ static int union_librtmp_send_audioframe(UnionLibrtmp_t *librtmp, UnionAVPacket 
     if(NULL == packet || NULL == packet->data)
         return -1;
     
-    if(!librtmp->bInitAudio)
+    if(packet->flags & UNION_AV_FLAG_CODEC_CONFIG)
     {
-        union_librtmp_send_audiospec(librtmp);
-        librtmp->bInitAudio =  true;
+        ret = union_librtmp_send_audiospec(librtmp, packet);
+        if(ret >= 0)
+            librtmp->bInitAudio = true;
     }
-    
-    if(!librtmp->bInitAudio)
-        return -1;
-    
-    size = packet->size + RTMP_AACSPECINFO_LEN;
-    RTMPPacket *rtmpPacket = union_librtmp_create_rtmppacket(size);
-    if(rtmpPacket)
+    else
     {
-        if(UNION_CODEC_ID_AAC == librtmp->audioEncCfg.codecId )
+        if(!librtmp->bInitAudio)
+            return -1;
+        
+        size = RTMP_AACSPECINFO_LEN + packet->size;
+        RTMPPacket *rtmpPacket = union_librtmp_create_rtmppacket(size);
+        if(rtmpPacket)
         {
-            body = rtmpPacket->m_body;
-            body[0] = unionflv_get_audio_flags(&librtmp->audioEncCfg);
-            body[1] = 0x01;
-            memcpy(&body[2], packet->data, packet->size);
-            
-            uint32_t timestamp = union_librtmp_get_relativeTime(librtmp, packet->dts, packet->type);
-            ret = union_librtmp_send_packet(librtmp->rtmpHandle, rtmpPacket, size, timestamp, RTMP_PACKET_TYPE_AUDIO);
+            if(UNION_CODEC_ID_AAC == librtmp->audioEncCfg.codecId )
+            {
+                body = rtmpPacket->m_body;
+                body[0] = unionflv_get_audio_flags(&librtmp->audioEncCfg);
+                body[1] = 0x01;
+                memcpy(&body[2], packet->data, packet->size);
+                
+                uint32_t timestamp = union_librtmp_get_relativeTime(librtmp, packet->dts, packet->type);
+                ret = union_librtmp_send_packet(librtmp->rtmpHandle, rtmpPacket, size, timestamp, RTMP_PACKET_TYPE_AUDIO);
+            }
+            union_librtmp_free_rtmppacket(&rtmpPacket);
         }
-        union_librtmp_free_rtmppacket(&rtmpPacket);
     }
     
     return ret;
 }
 
+/**
+ * @abstract 释放user-define Metadata中的所有元素
+ */
+static void union_librtmp_free_dict(UnionDict *dict)
+{
+    if(NULL == dict || dict->number == 0)
+        return ;
+    
+    for(int i = 0; i < dict->number; i++)
+    {
+        UnionDictElem *pElem = &dict->elems[i];
+        if(pElem->name)
+        {
+            free(pElem->name);
+            pElem->name = NULL;
+        }
+        
+        if(UnionDataType_String == pElem->type)
+        {
+            free(pElem->val.string);
+            pElem->val.string = NULL;
+        }
+    }
+    
+    free(dict->elems);
+    dict->elems = NULL;
+    dict->number = 0;
+}
 
 /**
  * @abstract 封装AFMObject
@@ -511,7 +541,7 @@ static void union_librtmp_amf_encode(AMFObject *amfObj, uint8_t *name, AMFDataTy
 /**
  * @abstract 组装metada
  */
-static int union_librtmp_compose_metadata(UnionLibrtmp_t *librtmp, void *metadata, uint8_t *buffer, int size)
+static int union_librtmp_compose_metadata(UnionLibrtmp_t *librtmp, uint8_t *buffer, int size)
 {
     UnionVideoEncCfg *videoEncCfg = NULL;
     UnionAudioEncCfg *audioEncCfg = NULL;
@@ -568,19 +598,14 @@ static int union_librtmp_compose_metadata(UnionLibrtmp_t *librtmp, void *metadat
             union_librtmp_amf_encode(&obj, "audiocodecid", AMF_NUMBER, UNIONFLV_SOUNDFORMAT_AAC >> UNIONFLV_SOUNDFORMAT_OFFSET, 0, NULL);
     
     //user define
-    if(metadata)
+    UnionDictElem *dictElem = NULL;
+    for(int i = 0; i < librtmp->userMetadata.number; i++)
     {
-        UnionDict *dict = (UnionDict *)metadata;
-        UnionDictElem *dictElem = NULL;
-
-        for(int i = 0; i < dict->number; i++)
-        {
-            dictElem = &(dict->elems[i]);
-            if(UnionDataType_Number ==  dictElem->type)
-                union_librtmp_amf_encode(&obj, dictElem->name, AMF_NUMBER, dictElem->val.number,  0, NULL);
-            else if(UnionDataType_String == dictElem->type)
-                union_librtmp_amf_encode(&obj, dictElem->name, AMF_STRING, 0,  0, dictElem->val.string);
-        }
+        dictElem = &(librtmp->userMetadata.elems[i]);
+        if(UnionDataType_Number ==  dictElem->type)
+            union_librtmp_amf_encode(&obj, dictElem->name, AMF_NUMBER, dictElem->val.number,  0, NULL);
+        else if(UnionDataType_String == dictElem->type)
+            union_librtmp_amf_encode(&obj, dictElem->name, AMF_STRING, 0,  0, dictElem->val.string);
     }
     
     end = AMF_EncodeEcmaArray(&obj, &amfArray, &amfArray + sizeof(amfArray));
@@ -602,7 +627,7 @@ static int union_librtmp_compose_metadata(UnionLibrtmp_t *librtmp, void *metadat
 /**
  * @abstract 发送metada
  */
-static void union_librtmp_send_metadata(UnionLibrtmp_t *librtmp, void *metadata)
+static void union_librtmp_send_metadata(UnionLibrtmp_t *librtmp)
 {
     RTMPPacket *rtmpPacket = NULL;
     uint8_t *body = NULL;
@@ -613,7 +638,7 @@ static void union_librtmp_send_metadata(UnionLibrtmp_t *librtmp, void *metadata)
     if(rtmpPacket)
     {
         body = (unsigned char *)rtmpPacket->m_body;
-        len = union_librtmp_compose_metadata(librtmp, metadata, body, RTMP_METADATA_MAXLEN);
+        len = union_librtmp_compose_metadata(librtmp, body, RTMP_METADATA_MAXLEN);
         if(len > 0)
             union_librtmp_send_packet(librtmp->rtmpHandle, rtmpPacket, len, 0, RTMP_PACKET_TYPE_INFO);
         union_librtmp_free_rtmppacket(&rtmpPacket);
@@ -671,36 +696,92 @@ UnionPublisherStatus union_librtmp_get_status(UnionLibrtmp_t *publisher)
     return publisher->status;
 }
 
-
 /**
- @abstract 获取当前流的视频格式
+ @abstract 设置当前流的视频格式
  
  @param publisher 推流对象
- 
- @return 当前流的视频格式指针
  */
-UnionVideoEncCfg *union_librtmp_get_videocfg(UnionLibrtmp_t *publisher)
+void union_librtmp_set_videocfg(UnionLibrtmp_t *librtmp, UnionVideoEncCfg *vEncCfg)
 {
-    if(NULL == publisher)
-        return NULL;
+    if(NULL == librtmp || NULL == vEncCfg)
+        return ;
     
-    return &publisher->videoEncCfg;
+    pthread_mutex_lock(&librtmp->mutex);
+    memcpy(&(librtmp->videoEncCfg), vEncCfg, sizeof(UnionVideoEncCfg));
+    librtmp->bSendMeta = false;
+    pthread_mutex_unlock(&librtmp->mutex);
+    
+    return ;
 }
 
-
 /**
- @abstract 获取当前流的音频格式
+ @abstract 设置当前流的音频格式
  
  @param publisher 推流对象
- 
- @return 当前流的音频格式指针
  */
-UnionAudioEncCfg* union_librtmp_get_audiocfg(UnionLibrtmp_t *publisher)
+void union_librtmp_set_audiocfg(UnionLibrtmp_t *librtmp, UnionAudioEncCfg *aEncCfg)
 {
-    if(NULL == publisher)
-        return NULL;
+    if(NULL == librtmp || NULL == aEncCfg)
+        return ;
     
-    return &publisher->audioEncCfg;
+    pthread_mutex_lock(&librtmp->mutex);
+    memcpy(&(librtmp->audioEncCfg), aEncCfg, sizeof(UnionAudioEncCfg));
+    librtmp->bSendMeta = false;
+    pthread_mutex_unlock(&librtmp->mutex);
+    
+    return;
+}
+
+/**
+ @abstract 设置用户自定义的metadata
+ 
+ @param publisher 推流对象
+ @param char 关键字
+ @param number 数值
+ @param string 字符串
+ */
+void union_librtmp_set_userMetadata(UnionLibrtmp_t *librtmp, char *key, double number, char *string)
+{
+    if(NULL == librtmp || NULL == key)
+        return ;
+    
+    UnionDictElem *pElem = NULL;
+    librtmp->userMetadata.elems  = (UnionDictElem *)realloc(librtmp->userMetadata.elems, (librtmp->userMetadata.number  + 1)* sizeof(UnionDictElem));
+    if(librtmp->userMetadata.elems)
+    {
+        pElem = &librtmp->userMetadata.elems[librtmp->userMetadata.number];
+        memset(pElem, 0, sizeof(UnionDictElem));
+        if(string)
+        {
+            pElem->val.string = malloc(strlen(string) + 1);
+            if(pElem->val.string)
+            {
+                memset(pElem->val.string, 0, strlen(string) + 1);
+                strcpy(pElem->val.string, string);
+            }
+            pElem->type = UnionDataType_String;
+        }
+        else
+        {
+            pElem->type = UnionDataType_Number;
+            pElem->val.number = number;
+        }
+        
+        pElem->name = malloc(strlen(key) + 1);
+        if(pElem->name)
+        {
+            memset(pElem->name, 0, strlen(key) + 1);
+            strcpy(pElem->name, key);
+            librtmp->userMetadata.number++;
+        }
+        else
+        {
+            if(pElem->val.string)
+                free(pElem->val.string);
+        }
+    }
+    
+    return ;
 }
 
 /**
@@ -709,30 +790,42 @@ UnionAudioEncCfg* union_librtmp_get_audiocfg(UnionLibrtmp_t *publisher)
 int union_librtmp_start(UnionLibrtmp_t *librtmp, const char *url, void *param)
 {
     RTMP *rtmpHandle = NULL;
-    bool ret = FALSE;
+    int errorCode = UnionPublisher_Error_Unknown;
+    int value = 1;
+    int fd = 0;
     
     if(NULL == librtmp || NULL == librtmp->rtmpHandle)
-        return -1;
+        goto FAIL;
+    
+    if(NULL == url || strncmp(url, "rtmp://", strlen("rtmp://")))
+    {
+        errorCode = UnionPublisher_Error_Invalid_Address;
+        goto FAIL;
+    }
     
     rtmpHandle = librtmp->rtmpHandle;
 
     if(UnionPublisher_Status_Started != librtmp->status)
     {
         RTMP_Init(rtmpHandle);
+        
         //设置url
-        ret = RTMP_SetupURL(rtmpHandle, url);
-        if(FALSE == ret)
+        if(!RTMP_SetupURL(rtmpHandle, url))
+        {
+            errorCode = UnionPublisher_Error_Invalid_Address;
             goto FAIL;
+        }
 
         RTMP_EnableWrite(rtmpHandle);
         
         //连接服务器
-        ret = RTMP_Connect(rtmpHandle, NULL);
-        if(FALSE == ret)
+        if(!RTMP_Connect(rtmpHandle, NULL))
+        {
+            errorCode = UnionPublisher_Error_ConnectServer_Failed;
             goto FAIL;
+        }
         
-        int value = 1;
-        int fd = RTMP_Socket(rtmpHandle);
+        fd = RTMP_Socket(rtmpHandle);
         if(fd > 0)
 #ifdef ANDROID
             setsockopt(fd, SOL_SOCKET, MSG_NOSIGNAL, &value, sizeof(value));
@@ -741,20 +834,21 @@ int union_librtmp_start(UnionLibrtmp_t *librtmp, const char *url, void *param)
 #endif
 
         //连接流
-        ret = RTMP_ConnectStream(rtmpHandle, 0);
-        if(FALSE == ret)
+        if(!RTMP_ConnectStream(rtmpHandle, 0))
+        {
+            errorCode = UnionPublisher_Error_ConnectStream_Failed;
             goto FAIL;
-
-        union_librtmp_send_metadata(librtmp, param);
+        }
         
         librtmp->audioBaseTime = -1;
         librtmp->videoBaseTime = -1;
 
         librtmp->lastAudioTime = -1;
         librtmp->lastVideoTime = -1;
-
+        
         librtmp->bInitAudio = false;
         librtmp->bInitVideo = false;
+        librtmp->bSendMeta = false;
         
         librtmp->status = UnionPublisher_Status_Started;
     }
@@ -766,7 +860,7 @@ FAIL:
         RTMP_Close(rtmpHandle);
 
     librtmp->status = UnionPublisher_Status_Error;
-    return -1;
+    return errorCode;
 }
 
 /**
@@ -777,9 +871,16 @@ int union_librtmp_send(UnionLibrtmp_t *librtmp, UnionAVPacket* packet)
    int ret = -1;
     
     if(NULL == librtmp || NULL == packet || UnionPublisher_Status_Started != librtmp->status)
-        return ret;
+        goto FAIL;
 
     pthread_mutex_lock(&librtmp->mutex);
+    
+    if(!librtmp->bSendMeta)
+    {
+        union_librtmp_send_metadata(librtmp);
+        librtmp->bSendMeta = true;
+    }
+    
     if(packet->type == UNION_MEDIA_TYPE_VIDEO)
         ret = union_librtmp_send_videoframe(librtmp, packet);
     else if(packet->type == UNION_MEDIA_TYPE_AUDIO)
@@ -794,7 +895,7 @@ FAIL:
         RTMP_Close(librtmp->rtmpHandle);
     
     librtmp->status = UnionPublisher_Status_Error;
-    return ret;
+    return UnionPublisher_Error_Send_Failed;
 }
 
 /**
@@ -832,6 +933,8 @@ void union_librtmp_close(UnionLibrtmp_t *librtmp)
         librtmp->rtmpHandle = NULL;
     }
     
+    union_librtmp_free_dict(&librtmp->userMetadata);
+    
     pthread_mutex_destroy(&librtmp->mutex);
     free(librtmp);
     librtmp = NULL;
@@ -859,8 +962,6 @@ UnionLibrtmp_t *union_librtmp_open()
     rtmpHandle = RTMP_Alloc();
     if(NULL == rtmpHandle)
         goto FAIL;
-    
-    RTMP_Init(rtmpHandle);
     
     librtmp->rtmpHandle = rtmpHandle;
     pthread_mutex_init(&librtmp->mutex, NULL);

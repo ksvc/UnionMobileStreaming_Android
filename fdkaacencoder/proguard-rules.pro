@@ -20,7 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.union.media.streamer.encoder.fdkaac.FdkAACEncoder {public *;}
--keep class com.union.media.streamer.encoder.fdkaac.FdkAACEncoderWrapper {
+-keep class org.opencdnunion.media.streamer.encoder.fdkaac.FdkAACEncoder {public *;}
+-keep class org.opencdnunion.media.streamer.encoder.fdkaac.FdkAACEncoderWrapper {
      private void onEncoded(...);
  }

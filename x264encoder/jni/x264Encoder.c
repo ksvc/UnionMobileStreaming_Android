@@ -1,6 +1,6 @@
 #include "x264Encoder.h"
 #include <x264.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 #include <UnionLog.h>
@@ -77,9 +77,10 @@ int x264EncOpen(X264Encoder* thiz, UnionVideoEncCfg* cfg) {
 
     x264Param->i_width = cfg->width;
     x264Param->i_height = cfg->height;
+    x264Param->rc.i_rc_method = X264_RC_ABR;
     x264Param->rc.i_bitrate = cfg->bitrate / 1000;
     x264Param->rc.i_vbv_max_bitrate = cfg->bitrate / 1000;
-    x264Param->rc.i_vbv_buffer_size = cfg->bitrate / 1000;
+    x264Param->rc.i_vbv_buffer_size = cfg->bitrate * 2 / 1000;
     x264Param->i_fps_den = 1;
     x264Param->i_fps_num = (uint32_t) cfg->frameRate;
     x264Param->i_timebase_den = 1000;
@@ -134,7 +135,7 @@ int x264EncAdjustBitrate(X264Encoder* thiz, int bitrate) {
     int preBitrate = thiz->x264Param->rc.i_bitrate * 1000;
     thiz->x264Param->rc.i_bitrate = bitrate / 1000;
     thiz->x264Param->rc.i_vbv_max_bitrate = bitrate / 1000;
-    thiz->x264Param->rc.i_vbv_buffer_size = bitrate / 1000;
+    thiz->x264Param->rc.i_vbv_buffer_size = bitrate * 2 / 1000;
     x264_encoder_reconfig(thiz->x264, thiz->x264Param);
     return preBitrate;
 }

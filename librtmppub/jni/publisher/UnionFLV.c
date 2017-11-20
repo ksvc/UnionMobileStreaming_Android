@@ -28,19 +28,6 @@ uint8_t unionflv_get_audio_flags(UnionAudioEncCfg *audioEncCfg)
 }
 
 /**
- @abstract 获取flv aac AudioSpecificConfig
- */
-uint16_t unionflv_get_aac_speccfg(UnionAudioEncCfg *audioEncCfg)
-{
-    uint16_t speccfg = 0;
-    speccfg |= ((2 << 11) & 0xF800);            //AAC LC
-    speccfg |= ((unionutils_get_samplerateindex(audioEncCfg->sampleRate) << 7)  & 0x0780);
-    speccfg |= ((audioEncCfg->channels << 3) & 0x78);
-    speccfg |=  0 & 0x07;
-    return speccfg;
-}
-
-/**
  @abstract 获取flv video tag的第一个字节
  */
 uint8_t unionflv_get_video_flags(UnionVideoEncCfg *videoEncCfg, bool bKeyFrame)

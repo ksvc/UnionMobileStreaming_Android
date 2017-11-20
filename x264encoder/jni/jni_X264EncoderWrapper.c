@@ -46,7 +46,7 @@ static void onEncoded(UnionAVPacket* out, void* opaque) {
                            out->dts, out->pts, out->flags);
 }
 
-jlong Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1init
+jlong Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1init
         (JNIEnv *env, jobject obj) {
     X264Encoder* thiz = x264EncInit();
     if (thiz) {
@@ -63,7 +63,7 @@ jlong Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1init
     return (jlong)(intptr_t) thiz;
 }
 
-jint Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1open
+jint Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1open
         (JNIEnv *env, jobject obj, jlong ptr, jint bitrate, jint pix_fmt, jint width, jint height,
          jfloat fps, jfloat iframe_interval, jint profile) {
     X264Encoder* thiz = getInstance(ptr);
@@ -80,13 +80,13 @@ jint Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1open
     return x264EncOpen(thiz, &config);
 }
 
-jint Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1adjust_1bitrate
+jint Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1adjust_1bitrate
         (JNIEnv *env, jobject obj, jlong ptr, jint bitrate) {
     X264Encoder* thiz = getInstance(ptr);
     return x264EncAdjustBitrate(thiz, bitrate);
 }
 
-jint Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1encode
+jint Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1encode
         (JNIEnv *env, jobject obj, jlong ptr, jobject jbuffer,
          jint width, jint height, jlong pts, jint flags) {
     X264Encoder* thiz = getInstance(ptr);
@@ -111,13 +111,13 @@ jint Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1encode
     return x264EncEncode(thiz, &frame);
 }
 
-void Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1close
+void Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1close
         (JNIEnv *env, jobject obj, jlong ptr) {
     X264Encoder* thiz = getInstance(ptr);
     x264EncClose(thiz);
 }
 
-void Java_com_union_media_streamer_encoder_x264_X264EncoderWrapper__1release
+void Java_org_opencdnunion_media_streamer_encoder_x264_X264EncoderWrapper__1release
         (JNIEnv *env, jobject obj, jlong ptr) {
     X264Encoder* thiz = getInstance(ptr);
     x264EncRelease(thiz);

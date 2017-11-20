@@ -5,11 +5,11 @@ android {
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.union.media.streamer.demo"
+        applicationId "org.opencdnunion.media.streamer.demo"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 440
-        versionName "4.4.0"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

@@ -20,7 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.union.media.streamer.encoder.x264.X264Encoder {public *;}
--keep class com.union.media.streamer.encoder.x264.X264EncoderWrapper {
+-keep class org.opencdnunion.media.streamer.encoder.x264.X264Encoder {public *;}
+-keep class org.opencdnunion.media.streamer.encoder.x264.X264EncoderWrapper {
      private void onEncoded(...);
  }

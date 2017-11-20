@@ -7,28 +7,6 @@
 
 #include "UnionPublisherUtils.h"
 
-/**
- @abstract 采样率索引
- */
-const int unionstreamer_audio_samplerates[16] = {
-    96000, 88200, 64000, 48000, 44100, 32000,
-   24000, 22050, 16000, 12000, 11025, 8000, 7350
-};
-
-/**
- @abstract 获取采样率索引
- */
-uint8_t unionutils_get_samplerateindex(int samplerate)
-{
-    int samplerate_index = 0;
-    for(samplerate_index = 0; samplerate_index < (sizeof(unionstreamer_audio_samplerates) / sizeof(int)); samplerate_index++)
-    {
-        if(unionstreamer_audio_samplerates[samplerate_index] == samplerate)
-            break;
-    }
-    return samplerate_index;
-}
-
 static const uint8_t *union_avc_find_startcode_internal(const uint8_t *p, const uint8_t *end)
 {
     const uint8_t *a = p + 4 - ((intptr_t)p & 3);
