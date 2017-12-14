@@ -279,12 +279,12 @@ public class StdCameraActivity extends BaseCameraActivity {
     protected void onStreamerInfo(int what, int msg1, int msg2) {
         super.onStreamerInfo(what, msg1, msg2);
         switch (what) {
-            case StreamerConstants.KSY_STREAMER_CAMERA_FACING_CHANGED:
+            case StreamerConstants.UNION_STREAMER_CAMERA_FACING_CHANGED:
                 resetCameraExposure();
                 resetExposureBar();
                 break;
-            case StreamerConstants.KSY_STREAMER_OPEN_FILE_SUCCESS:
-                Log.d(TAG, "KSY_STREAMER_OPEN_FILE_SUCCESS");
+            case StreamerConstants.UNION_STREAMER_OPEN_FILE_SUCCESS:
+                Log.d(TAG, "UNION_STREAMER_OPEN_FILE_SUCCESS");
                 startChronometer();
                 break;
             default:

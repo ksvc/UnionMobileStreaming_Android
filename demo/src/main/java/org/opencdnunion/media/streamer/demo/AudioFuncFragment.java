@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
+import org.opencdnunion.media.streamer.capture.AudioPlayerCapture;
 import org.opencdnunion.media.streamer.filter.audio.AudioFilterBase;
 import org.opencdnunion.media.streamer.filter.audio.AudioReverbFilter;
-import org.opencdnunion.media.streamer.filter.audio.KSYAudioEffectFilter;
+import org.opencdnunion.media.streamer.filter.audio.AudioEffectFilter;
 import org.opencdnunion.media.streamer.kit.UnionStreamer;
 
 import java.util.LinkedList;
@@ -36,7 +37,10 @@ public class AudioFuncFragment extends Fragment {
 
     protected StdCameraActivity mActivity;
     protected UnionStreamer mStreamer;
+    protected String mBgmPath;
 
+    private int mChooseBGMFilter = 3;
+    private String[] mBGMFilterName = {"-3", "-2", "-1", "0", "1", "2", "3"};
     private boolean[] mChooseFilter = {false, false, false, false, false, false,
             false, false, false, false};
 
@@ -48,6 +52,7 @@ public class AudioFuncFragment extends Fragment {
         ButterKnife.bind(this, view);
         mActivity = (StdCameraActivity) getActivity();
         mStreamer = mActivity.mStreamer;
+        mBgmPath = "file://" + mActivity.mSdcardPath + "/test.mp3";
         return view;
     }
 
@@ -71,6 +76,46 @@ public class AudioFuncFragment extends Fragment {
         if (mAudioLDCB.isChecked()) {
             mStreamer.setEnableAudioLowDelay(true);
         }
+    }
+
+    @OnCheckedChanged(R.id.bgm)
+    protected void onBgmChecked(boolean isChecked) {
+        if (isChecked) {
+            mStreamer.getAudioPlayerCapture().setOnCompletionListener(mOnCompletionListener);
+            mStreamer.getAudioPlayerCapture().setOnErrorListener(mOnErrorListener);
+            mStreamer.getAudioPlayerCapture().setVolume(0.4f);
+            mStreamer.setEnableAudioMix(true);
+            mStreamer.startBgm(mBgmPath, true);
+        } else {
+            mStreamer.stopBgm();
+        }
+    }
+
+    @OnClick(R.id.bgm_filter)
+    protected void onChooseBGMFilter() {
+        AlertDialog alertDialog;
+        alertDialog = new AlertDialog.Builder(mActivity)
+                .setTitle("请选择背景音乐变调等级")
+                .setSingleChoiceItems(mBGMFilterName, mChooseBGMFilter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mChooseBGMFilter = which;
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int level = Integer.parseInt(mBGMFilterName[mChooseBGMFilter]);
+                        AudioEffectFilter audioEffect = new AudioEffectFilter(
+                                AudioEffectFilter.AUDIO_EFFECT_TYPE_PITCH);
+                        audioEffect.setPitchLevel(level);
+                        mStreamer.getAudioPlayerCapture().getAudioFilterMgt().setFilter(audioEffect);
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
     }
 
     @OnClick(R.id.audio_filter)
@@ -102,23 +147,23 @@ public class AudioFuncFragment extends Fragment {
                             filters.add(demofilter);
                         }
                         if (mChooseFilter[2]) {
-                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(
-                                    KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_FEMALE);
+                            AudioEffectFilter audioEffect = new AudioEffectFilter(
+                                    AudioEffectFilter.AUDIO_EFFECT_TYPE_FEMALE);
                             filters.add(audioEffect);
                         }
                         if (mChooseFilter[3]) {
-                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(
-                                    KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_MALE);
+                            AudioEffectFilter audioEffect = new AudioEffectFilter(
+                                    AudioEffectFilter.AUDIO_EFFECT_TYPE_MALE);
                             filters.add(audioEffect);
                         }
                         if (mChooseFilter[4]) {
-                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(
-                                            KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_HEROIC);
+                            AudioEffectFilter audioEffect = new AudioEffectFilter(
+                                    AudioEffectFilter.AUDIO_EFFECT_TYPE_HEROIC);
                             filters.add(audioEffect);
                         }
                         if (mChooseFilter[5]) {
-                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(
-                                            KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_ROBOT);
+                            AudioEffectFilter audioEffect = new AudioEffectFilter(
+                                    AudioEffectFilter.AUDIO_EFFECT_TYPE_ROBOT);
                             filters.add(audioEffect);
                         }
 
@@ -155,4 +200,20 @@ public class AudioFuncFragment extends Fragment {
     protected void onAudioLDChecked(boolean isChecked) {
         mStreamer.setEnableAudioLowDelay(isChecked);
     }
+
+    AudioPlayerCapture.OnCompletionListener mOnCompletionListener =
+            new AudioPlayerCapture.OnCompletionListener() {
+                @Override
+                public void onCompletion(AudioPlayerCapture audioPlayerCapture) {
+                    Log.d(TAG, "End of the currently playing music");
+                }
+            };
+
+    AudioPlayerCapture.OnErrorListener mOnErrorListener = new AudioPlayerCapture.OnErrorListener() {
+        @Override
+        public void onError(AudioPlayerCapture audioPlayerCapture, int what, long extra) {
+            Log.e(TAG, "OnErrorListener, Error:" + what + ", extra:" + extra);
+            mStreamer.stopBgm();
+        }
+    };
 }

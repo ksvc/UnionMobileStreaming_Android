@@ -104,7 +104,7 @@ public class FloatViewActivity extends Activity {
             mOrientationEventListener.disable();
         }
         removeSurfaceWindow();
-        KSYGlobalStreamer.setInstance(null);
+        UnionGlobalStreamer.setInstance(null);
     }
 
     @Override
@@ -120,8 +120,8 @@ public class FloatViewActivity extends Activity {
     }
 
     private void onBackoffClick() {
-        KSYGlobalStreamer.getInstance().onPause();
-        KSYGlobalStreamer.getInstance().setDisplayPreview((GLSurfaceView) null);
+        UnionGlobalStreamer.getInstance().onPause();
+        UnionGlobalStreamer.getInstance().setDisplayPreview((GLSurfaceView) null);
         FloatViewActivity.this.finish();
     }
 
@@ -193,7 +193,7 @@ public class FloatViewActivity extends Activity {
             });
 
             mCameraView = new GLSurfaceView(this);
-            KSYGlobalStreamer.getInstance().setDisplayPreview(mCameraView);
+            UnionGlobalStreamer.getInstance().setDisplayPreview(mCameraView);
             RelativeLayout.LayoutParams previewLayoutParams =
                     new RelativeLayout.LayoutParams(width, height);
             mFloatLayout.addView(mCameraView, previewLayoutParams);
@@ -270,7 +270,7 @@ public class FloatViewActivity extends Activity {
 
         int rotation = getDisplayRotation();
         Log.d(TAG, "InitialRotate: " + rotation);
-        KSYGlobalStreamer.getInstance().setRotateDegrees(rotation);
+        UnionGlobalStreamer.getInstance().setRotateDegrees(rotation);
     }
 
     private void addFloatViewWithPermCheck() {
@@ -313,7 +313,7 @@ public class FloatViewActivity extends Activity {
         if (mPreviewWindowShow) {
             int rotation = getDisplayRotation();
             Log.i(TAG, "onSwitchRotate: " + mLastRotation + "->" + rotation);
-            KSYGlobalStreamer.getInstance().setRotateDegrees(rotation);
+            UnionGlobalStreamer.getInstance().setRotateDegrees(rotation);
 
             boolean isLastLandscape = (mLastRotation % 180) != 0;
             boolean isLandscape = (rotation % 180) != 0;
@@ -335,7 +335,7 @@ public class FloatViewActivity extends Activity {
 
     // update water mark position while screen orientation changed
     private void updateWaterMark(boolean isLandscape) {
-        UnionStreamer streamer = KSYGlobalStreamer.getInstance();
+        UnionStreamer streamer = UnionGlobalStreamer.getInstance();
         streamer.hideWaterMarkLogo();
         streamer.hideWaterMarkTime();
         if (!isLandscape) {

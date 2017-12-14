@@ -8,13 +8,13 @@ import org.opencdnunion.media.streamer.kit.UnionStreamer;
  * Class to store global streaming instance.
  */
 
-public class KSYGlobalStreamer {
+public class UnionGlobalStreamer {
 
     @SuppressLint("StaticFieldLeak")
     private static UnionStreamer sStreamer;
 
     // private constructor
-    private KSYGlobalStreamer() {
+    private UnionGlobalStreamer() {
 
     }
 

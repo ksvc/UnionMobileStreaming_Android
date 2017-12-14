@@ -23,7 +23,7 @@ public class FloatCameraActivity extends BaseCameraActivity {
         mSwitchToFloatView = true;
         Intent intent = new Intent(getApplicationContext(), FloatViewActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        KSYGlobalStreamer.setInstance(mStreamer);
+        UnionGlobalStreamer.setInstance(mStreamer);
         startActivity(intent);
     }
 
@@ -31,7 +31,7 @@ public class FloatCameraActivity extends BaseCameraActivity {
     protected void handleOnResume() {
         // 重新设置预览View，防止从悬浮窗回来后黑屏
         mStreamer.setDisplayPreview(mGLSurfaceView);
-        // 调用KSYStreamer的onResume接口
+        // 调用UnionStreamer的onResume接口
         mStreamer.onResume();
         // 停止背景图采集
         mStreamer.stopImageCapture();
@@ -43,7 +43,7 @@ public class FloatCameraActivity extends BaseCameraActivity {
 
     @Override
     protected void handleOnPause() {
-        // 调用KSYStreamer的onPause接口
+        // 调用UnionStreamer的onPause接口
         mStreamer.onPause();
         if (!mSwitchToFloatView) {
             // 停止摄像头采集，然后开启背景图采集，以实现后台背景图推流功能
