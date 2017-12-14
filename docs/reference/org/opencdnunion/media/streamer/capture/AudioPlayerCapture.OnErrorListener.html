@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
 <title>
 
-  CameraCapture.OnCameraCaptureListener
+  AudioPlayerCapture.OnErrorListener
 
 
 </title>
@@ -182,9 +182,9 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioCapture.OnAudioCaptureListener.html">AudioCapture.OnAudioCaptureListener</a></li>
           <li class="api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.OnCompletionListener.html">AudioPlayerCapture.OnCompletionListener</a></li>
-          <li class="api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.OnErrorListener.html">AudioPlayerCapture.OnErrorListener</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.OnErrorListener.html">AudioPlayerCapture.OnErrorListener</a></li>
           <li class="api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.OnPreparedListener.html">AudioPlayerCapture.OnPreparedListener</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.OnCameraCaptureListener.html">CameraCapture.OnCameraCaptureListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.OnCameraCaptureListener.html">CameraCapture.OnCameraCaptureListener</a></li>
       </ul>
     </li>
               
@@ -266,7 +266,7 @@
      
     
     interface
-<h1>CameraCapture.OnCameraCaptureListener</h1>
+<h1>AudioPlayerCapture.OnErrorListener</h1>
 
 
 
@@ -285,7 +285,7 @@
 
     <tr>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">org.opencdnunion.media.streamer.capture.CameraCapture.OnCameraCaptureListener</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.opencdnunion.media.streamer.capture.AudioPlayerCapture.OnErrorListener</td>
     </tr>
     
 
@@ -301,7 +301,7 @@
 
 
 <h2>Class Overview</h2>
-<p>Notify the event occurred while camera capturing.
+<p>The interface on audio play error listener.
 </p>
 
 
@@ -372,45 +372,9 @@
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.OnCameraCaptureListener.html#onError(int)">onError</a></span>(int err)
+        <span class="sympad"><a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.OnErrorListener.html#onError(org.opencdnunion.media.streamer.capture.AudioPlayerCapture, int, long)">onError</a></span>(<a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a> audioPlayerCapture, int type, long msg)
         
-        <div class="jd-descrdiv">Notify error occurred while camera capturing.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.OnCameraCaptureListener.html#onFacingChanged(int)">onFacingChanged</a></span>(int facing)
-        
-        <div class="jd-descrdiv">Notify camera facing changed.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.OnCameraCaptureListener.html#onStarted()">onStarted</a></span>()
-        
-        <div class="jd-descrdiv">Notify camera capture started.</div>
+        <div class="jd-descrdiv">On error.</div>
   
   </td></tr>
 
@@ -463,7 +427,7 @@
 
 
 
-<a id="onError(int)"></a>
+<a id="onError(org.opencdnunion.media.streamer.capture.AudioPlayerCapture, int, long)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -476,7 +440,7 @@
         void
       </span>
       <span class="sympad">onError</span>
-      <span class="normal">(int err)</span>
+      <span class="normal">(<a href="../../../../../org/opencdnunion/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a> audioPlayerCapture, int type, long msg)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -488,94 +452,25 @@
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Notify error occurred while camera capturing.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>On error.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>err</th>
-          <td>err code.</td>
+          <th>audioPlayerCapture</th>
+          <td>the AudioPlayerCapture intance</td>
         </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">See Also</h5>
-      <ul class="nolist"><li><code><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.html#CAMERA_ERROR_UNKNOWN">CAMERA_ERROR_UNKNOWN</a></code></li><li><code><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.html#CAMERA_ERROR_START_FAILED">CAMERA_ERROR_START_FAILED</a></code></li><li><code><a href="../../../../../org/opencdnunion/media/streamer/capture/CameraCapture.html#CAMERA_ERROR_SERVER_DIED">CAMERA_ERROR_SERVER_DIED</a></code></li>
-      </ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="onFacingChanged(int)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        void
-      </span>
-      <span class="sympad">onFacingChanged</span>
-      <span class="normal">(int facing)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Notify camera facing changed.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
         <tr>
-          <th>facing</th>
-          <td>new facing
+          <th>type</th>
+          <td>the error type</td>
+        </tr>
+        <tr>
+          <th>msg</th>
+          <td>the extra msg
 </td>
         </tr>
       </table>
   </div>
-
-    </div>
-</div>
-
-
-<a id="onStarted()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        void
-      </span>
-      <span class="sympad">onStarted</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Notify camera capture started.
-</p></div>
 
     </div>
 </div>

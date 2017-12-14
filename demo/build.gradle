@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.1'
 
     defaultConfig {
         applicationId "org.opencdnunion.media.streamer.demo"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode 100
         versionName "1.0.0"
 
@@ -27,19 +27,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.lht:paintview:1.16'
-    compile 'com.facebook.fresco:fresco:1.4.0'
-    compile 'com.facebook.fresco:animated-gif:1.4.0'
-    compile 'com.facebook.fresco:animated-webp:1.4.0'
-    //compile 'com.facebook.fresco:webpsupport:1.4.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.0.1'
+    implementation 'com.lht:paintview:1.17'
+    implementation 'com.facebook.fresco:fresco:1.4.0'
+    implementation 'com.facebook.fresco:animated-gif:1.4.0'
+    implementation 'com.facebook.fresco:animated-webp:1.4.0'
+    //implementation 'com.facebook.fresco:webpsupport:1.4.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
-    compile project(':libunionstreamer')
-    compile project(':x264encoder')
-    compile project(':fdkaacencoder')
-    compile project(':librtmppub')
+    implementation 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
+    implementation project(':libunionstreamer')
+    implementation project(':x264encoder')
+    implementation project(':fdkaacencoder')
+    implementation project(':librtmppub')
 }

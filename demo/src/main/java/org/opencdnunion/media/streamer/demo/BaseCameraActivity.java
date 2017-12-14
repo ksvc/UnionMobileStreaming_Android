@@ -214,7 +214,7 @@ public class BaseCameraActivity extends Activity implements
     }
 
     protected void handleOnResume() {
-        // 调用KSYStreamer的onResume接口
+        // 调用UnionStreamer的onResume接口
         mStreamer.onResume();
         // 停止背景图采集
         mStreamer.stopImageCapture();
@@ -225,7 +225,7 @@ public class BaseCameraActivity extends Activity implements
     }
 
     protected void handleOnPause() {
-        // 调用KSYStreamer的onPause接口
+        // 调用UnionStreamer的onPause接口
         mStreamer.onPause();
         // 停止摄像头采集，然后开启背景图采集，以实现后台背景图推流功能
         mStreamer.stopCameraPreview();
@@ -301,12 +301,12 @@ public class BaseCameraActivity extends Activity implements
                 Toast.makeText(BaseCameraActivity.this, "当前机型不支持该滤镜",
                         Toast.LENGTH_SHORT).show();
                 mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
-                        ImgTexFilterMgt.KSY_FILTER_BEAUTY_DISABLE);
+                        ImgTexFilterMgt.IMG_FILTER_BEAUTY_DISABLE);
             }
         });
         // 设置美颜滤镜，关于美颜滤镜的具体说明请参见专题说明以及完整版demo
         mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
-                ImgTexFilterMgt.KSY_FILTER_BEAUTY_PRO3);
+                ImgTexFilterMgt.IMG_FILTER_BEAUTY_PRO3);
     }
 
     private void startDebugInfoTimer() {
@@ -390,28 +390,28 @@ public class BaseCameraActivity extends Activity implements
     protected void onStreamerInfo(int what, int msg1, int msg2) {
         Log.d(TAG, "OnInfo: " + what + " msg1: " + msg1 + " msg2: " + msg2);
         switch (what) {
-            case StreamerConstants.KSY_STREAMER_CAMERA_INIT_DONE:
-                Log.d(TAG, "KSY_STREAMER_CAMERA_INIT_DONE");
+            case StreamerConstants.UNION_STREAMER_CAMERA_INIT_DONE:
+                Log.d(TAG, "UNION_STREAMER_CAMERA_INIT_DONE");
                 break;
-            case StreamerConstants.KSY_STREAMER_CAMERA_FACING_CHANGED:
-                Log.d(TAG, "KSY_STREAMER_CAMERA_FACING_CHANGED");
+            case StreamerConstants.UNION_STREAMER_CAMERA_FACING_CHANGED:
+                Log.d(TAG, "UNION_STREAMER_CAMERA_FACING_CHANGED");
                 // check is flash torch mode supported
                 mFlashView.setEnabled(mStreamer.getCameraCapture().isTorchSupported());
                 break;
-            case StreamerConstants.KSY_STREAMER_OPEN_STREAM_SUCCESS:
-                Log.d(TAG, "KSY_STREAMER_OPEN_STREAM_SUCCESS");
+            case StreamerConstants.UNION_STREAMER_OPEN_STREAM_SUCCESS:
+                Log.d(TAG, "UNION_STREAMER_OPEN_STREAM_SUCCESS");
                 mStreamingText.setText(STOP_STREAM);
                 startChronometer();
                 break;
-            case StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW:
-                Log.d(TAG, "KSY_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
+            case StreamerConstants.UNION_STREAMER_FRAME_SEND_SLOW:
+                Log.d(TAG, "UNION_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
                 Toast.makeText(BaseCameraActivity.this, "Network not good!",
                         Toast.LENGTH_SHORT).show();
                 break;
-            case StreamerConstants.KSY_STREAMER_EST_BW_RAISE:
+            case StreamerConstants.UNION_STREAMER_EST_BW_RAISE:
                 Log.d(TAG, "BW raise to " + msg1 / 1000 + "kbps");
                 break;
-            case StreamerConstants.KSY_STREAMER_EST_BW_DROP:
+            case StreamerConstants.UNION_STREAMER_EST_BW_DROP:
                 Log.d(TAG, "BW drop to " + msg1 / 1000 + "kpbs");
                 break;
             default:
@@ -422,17 +422,17 @@ public class BaseCameraActivity extends Activity implements
     protected void onStreamerError(int what, int msg1, int msg2) {
         Log.e(TAG, "streaming error: what=" + what + " msg1=" + msg1 + " msg2=" + msg2);
         switch (what) {
-            case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED:
-            case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN:
+            case StreamerConstants.UNION_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED:
+            case StreamerConstants.UNION_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN:
                 break;
-            case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_UNKNOWN:
-            case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_START_FAILED:
-            case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_EVICTED:
-            case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_SERVER_DIED:
+            case StreamerConstants.UNION_STREAMER_CAMERA_ERROR_UNKNOWN:
+            case StreamerConstants.UNION_STREAMER_CAMERA_ERROR_START_FAILED:
+            case StreamerConstants.UNION_STREAMER_CAMERA_ERROR_EVICTED:
+            case StreamerConstants.UNION_STREAMER_CAMERA_ERROR_SERVER_DIED:
                 mStreamer.stopCameraPreview();
                 break;
-            case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
-            case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
+            case StreamerConstants.UNION_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
+            case StreamerConstants.UNION_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
                 handleEncodeError();
             default:
                 reStreaming(what);

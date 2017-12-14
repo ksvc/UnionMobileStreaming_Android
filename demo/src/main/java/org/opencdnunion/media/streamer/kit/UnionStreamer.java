@@ -17,6 +17,7 @@ import android.view.TextureView;
 
 import org.opencdnunion.media.streamer.avAdaptor.AVAdapter;
 import org.opencdnunion.media.streamer.capture.AudioCapture;
+import org.opencdnunion.media.streamer.capture.AudioPlayerCapture;
 import org.opencdnunion.media.streamer.capture.CameraCapture;
 import org.opencdnunion.media.streamer.capture.ImageCapture;
 import org.opencdnunion.media.streamer.capture.WaterMarkCapture;
@@ -131,6 +132,7 @@ public class UnionStreamer {
     protected ImgTexFilterMgt mImgTexFilterMgt;
     protected ImgTexPreview mImgTexPreview;
     protected AudioCapture mAudioCapture;
+    protected AudioPlayerCapture mAudioPlayerCapture;
     protected ImgTexToBuf mImgTexToBuf;
     protected Encoder mVideoEncoder;
     protected Encoder mAudioEncoder;
@@ -191,6 +193,7 @@ public class UnionStreamer {
         mImgTexPreviewMixer.getSrcPin().connect(mImgTexPreview.getSinkPin());
 
         // Audio preview
+        mAudioPlayerCapture = new AudioPlayerCapture(mContext);
         mAudioCapture = new AudioCapture(mContext);
         mAudioCapture.setAudioCaptureType(mAudioCaptureType);
         mAudioFilterMgt = new AudioFilterMgt();
@@ -203,6 +206,9 @@ public class UnionStreamer {
         mAudioFilterMgt.getSrcPin().connect(mAudioPreview.getSinkPin());
         mAudioPreview.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
         mAudioResampleFilter.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
+        if (mEnableAudioMix) {
+            mAudioPlayerCapture.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
+        }
 
         // avAdaptor & publisher
         mAVAdapter = new AVAdapter("AVAdapter");
@@ -242,11 +248,11 @@ public class UnionStreamer {
                 int what;
                 switch (errorCode) {
                     case AudioCapture.AUDIO_START_FAILED:
-                        what = StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED;
+                        what = StreamerConstants.UNION_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED;
                         break;
                     case AudioCapture.AUDIO_ERROR_UNKNOWN:
                     default:
-                        what = StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN;
+                        what = StreamerConstants.UNION_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN;
                         break;
                 }
                 if (mOnErrorListener != null) {
@@ -261,7 +267,7 @@ public class UnionStreamer {
             public void onStarted() {
                 Log.d(TAG, "CameraCapture ready");
                 if (mOnInfoListener != null) {
-                    mOnInfoListener.onInfo(StreamerConstants.KSY_STREAMER_CAMERA_INIT_DONE, 0, 0);
+                    mOnInfoListener.onInfo(StreamerConstants.UNION_STREAMER_CAMERA_INIT_DONE, 0, 0);
                 }
             }
 
@@ -270,7 +276,7 @@ public class UnionStreamer {
                 mCameraFacing = facing;
                 updateFrontMirror();
                 if (mOnInfoListener != null) {
-                    mOnInfoListener.onInfo(StreamerConstants.KSY_STREAMER_CAMERA_FACEING_CHANGED, facing, 0);
+                    mOnInfoListener.onInfo(StreamerConstants.UNION_STREAMER_CAMERA_FACEING_CHANGED, facing, 0);
                 }
             }
 
@@ -280,17 +286,17 @@ public class UnionStreamer {
                 int what;
                 switch (err) {
                     case CameraCapture.CAMERA_ERROR_START_FAILED:
-                        what = StreamerConstants.KSY_STREAMER_CAMERA_ERROR_START_FAILED;
+                        what = StreamerConstants.UNION_STREAMER_CAMERA_ERROR_START_FAILED;
                         break;
                     case CameraCapture.CAMERA_ERROR_SERVER_DIED:
-                        what = StreamerConstants.KSY_STREAMER_CAMERA_ERROR_SERVER_DIED;
+                        what = StreamerConstants.UNION_STREAMER_CAMERA_ERROR_SERVER_DIED;
                         break;
                     case CameraCapture.CAMERA_ERROR_EVICTED:
-                        what = StreamerConstants.KSY_STREAMER_CAMERA_ERROR_EVICTED;
+                        what = StreamerConstants.UNION_STREAMER_CAMERA_ERROR_EVICTED;
                         break;
                     case CameraCapture.CAMERA_ERROR_UNKNOWN:
                     default:
-                        what = StreamerConstants.KSY_STREAMER_CAMERA_ERROR_UNKNOWN;
+                        what = StreamerConstants.UNION_STREAMER_CAMERA_ERROR_UNKNOWN;
                         break;
                 }
                 if (mOnErrorListener != null) {
@@ -320,7 +326,7 @@ public class UnionStreamer {
                         Log.i(TAG, "packet send slow, delayed " + msg + "ms");
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
-                                    StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW,
+                                    StreamerConstants.UNION_STREAMER_FRAME_SEND_SLOW,
                                     (int) msg, 0);
                         }
                         break;
@@ -334,7 +340,7 @@ public class UnionStreamer {
                         mVideoEncoder.adjustBitrate((int) msg);
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
-                                    StreamerConstants.KSY_STREAMER_EST_BW_RAISE, (int) msg, 0);
+                                    StreamerConstants.UNION_STREAMER_EST_BW_RAISE, (int) msg, 0);
                         }
                         break;
                     case AVAdapter.INFO_EST_BW_DROP:
@@ -347,7 +353,7 @@ public class UnionStreamer {
                         mVideoEncoder.adjustBitrate((int) msg);
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
-                                    StreamerConstants.KSY_STREAMER_EST_BW_DROP, (int) msg, 0);
+                                    StreamerConstants.UNION_STREAMER_EST_BW_DROP, (int) msg, 0);
                         }
                         break;
                     case AVAdapter.INFO_STOPPED:
@@ -369,7 +375,7 @@ public class UnionStreamer {
                     int status = err;
                     switch (err) {
                         case AVAdapter.ERROR_AV_ASYNC_ERROR:
-                            status = StreamerConstants.KSY_STREAMER_ERROR_AV_ASYNC;
+                            status = StreamerConstants.UNION_STREAMER_ERROR_AV_ASYNC;
                             break;
                         default:
                             break;
@@ -391,7 +397,7 @@ public class UnionStreamer {
                         }
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
-                                    StreamerConstants.KSY_STREAMER_OPEN_STREAM_SUCCESS, 0, 0);
+                                    StreamerConstants.UNION_STREAMER_OPEN_STREAM_SUCCESS, 0, 0);
                         }
                         break;
                     default:
@@ -439,14 +445,14 @@ public class UnionStreamer {
             switch (err) {
                 case Encoder.ENCODER_ERROR_UNSUPPORTED:
                     what = isVideo ?
-                            StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED :
-                            StreamerConstants.KSY_STREAMER_AUDIO_ENCODER_ERROR_UNSUPPORTED;
+                            StreamerConstants.UNION_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED :
+                            StreamerConstants.UNION_STREAMER_AUDIO_ENCODER_ERROR_UNSUPPORTED;
                     break;
                 case Encoder.ENCODER_ERROR_UNKNOWN:
                 default:
                     what = isVideo ?
-                            StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN :
-                            StreamerConstants.KSY_STREAMER_AUDIO_ENCODER_ERROR_UNKNOWN;
+                            StreamerConstants.UNION_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN :
+                            StreamerConstants.UNION_STREAMER_AUDIO_ENCODER_ERROR_UNKNOWN;
                     break;
             }
             //do not need to auto restart
@@ -525,6 +531,15 @@ public class UnionStreamer {
      */
     public AudioCapture getAudioCapture() {
         return mAudioCapture;
+    }
+
+    /**
+     * Get {@link AudioPlayerCapture} instance which could handle BGM related operations.
+     *
+     * @return AudioPlayerCapture instance
+     */
+    public AudioPlayerCapture getAudioPlayerCapture() {
+        return mAudioPlayerCapture;
     }
 
     /**
@@ -1387,6 +1402,9 @@ public class UnionStreamer {
             mAudioCapture.setAudioCaptureType(enable ? AudioCapture.AUDIO_CAPTURE_TYPE_OPENSLES :
                     AudioCapture.AUDIO_CAPTURE_TYPE_AUDIORECORDER);
         }
+        mAudioPlayerCapture.setAudioPlayerType(enable ?
+                AudioPlayerCapture.AUDIO_PLAYER_TYPE_OPENSLES :
+                AudioPlayerCapture.AUDIO_PLAYER_TYPE_AUDIOTRACK);
     }
 
     /**
@@ -1888,6 +1906,37 @@ public class UnionStreamer {
     }
 
     /**
+     * Start bgm play.
+     *
+     * @param path bgm path.
+     * @param loop true if loop this music, false if not.
+     */
+    public void startBgm(String path, boolean loop) {
+        mAudioPlayerCapture.start(path, loop);
+    }
+
+    /**
+     * Stop bgm play.
+     */
+    public void stopBgm() {
+        mAudioPlayerCapture.stop();
+    }
+
+    /**
+     * Set if enable audio mix, usually set true when headset plugged.
+     *
+     * @param enable true to enable, false to disable.
+     */
+    public void setEnableAudioMix(boolean enable) {
+        mEnableAudioMix = enable;
+        if (mEnableAudioMix) {
+            mAudioPlayerCapture.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
+        } else {
+            mAudioPlayerCapture.getSrcPin().disconnect(mAudioMixer.getSinkPin(mIdxAudioBgm), false);
+        }
+    }
+
+    /**
      * check if audio mix is enabled.
      *
      * @return true if enable, false if not.
@@ -1920,6 +1969,7 @@ public class UnionStreamer {
      * @param isMute true to mute, false to unmute.
      */
     public void setMuteAudio(boolean isMute) {
+        mAudioPlayerCapture.setMute(isMute);
         mAudioPreview.setMute(isMute);
         mAudioMixer.setMute(isMute);
     }
@@ -1987,11 +2037,11 @@ public class UnionStreamer {
      *
      * @param enable   default false
      * @param interval the restart interval(ms) default 3000
-     * @see StreamerConstants#KSY_STREAMER_ERROR_CONNECT_BREAKED
-     * @see StreamerConstants#KSY_STREAMER_ERROR_DNS_PARSE_FAILED
-     * @see StreamerConstants#KSY_STREAMER_ERROR_CONNECT_FAILED
-     * @see StreamerConstants#KSY_STREAMER_ERROR_PUBLISH_FAILED
-     * @see StreamerConstants#KSY_STREAMER_ERROR_AV_ASYNC
+     * @see StreamerConstants#UNION_STREAMER_ERROR_CONNECT_BREAKED
+     * @see StreamerConstants#UNION_STREAMER_ERROR_DNS_PARSE_FAILED
+     * @see StreamerConstants#UNION_STREAMER_ERROR_CONNECT_FAILED
+     * @see StreamerConstants#UNION_STREAMER_ERROR_PUBLISH_FAILED
+     * @see StreamerConstants#UNION_STREAMER_ERROR_AV_ASYNC
      */
     public void setEnableAutoRestart(boolean enable, int interval) {
         mAutoRestart = enable;
@@ -2181,6 +2231,7 @@ public class UnionStreamer {
             mImageCapture.release();
             mWaterMarkCapture.release();
             mCameraCapture.release();
+            mAudioPlayerCapture.release();
             mAudioCapture.release();
             mGLRender.release();
             setOnLogEventListener(null);
